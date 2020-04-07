@@ -1,9 +1,11 @@
 package com.comittedpeople.englishlearningweb.domain;
 
-public class UserReminderProgram {
+import javax.persistence.Id;
 
-	
+public class UserReminderProgram {
+	@Id
 	private UserAccount user;
-	private Protected_ReminderProgram reminderProgram;
 	
+	@Id
+	private Protected_ReminderProgram reminderProgram;
 }
