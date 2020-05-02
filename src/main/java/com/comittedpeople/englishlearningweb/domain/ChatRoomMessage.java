@@ -25,4 +25,36 @@ public class ChatRoomMessage {
 	private String chatContent;
 	
 	private LocalDateTime messageSentDate;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public UserAccount getUserSentAccount() {
+		return userSentAccount;
+	}
+
+	public void setUserSentAccount(UserAccount userSentAccount) {
+		this.userSentAccount = userSentAccount;
+	}
+
+	public String getChatContent() {
+		return chatContent;
+	}
+
+	public void setChatContent(String chatContent) {
+		this.chatContent = chatContent;
+	}
+
+	public LocalDateTime getMessageSentDate() {
+		return messageSentDate;
+	}
+
+	public void setMessageSentDate(LocalDateTime messageSentDate) {
+		this.messageSentDate = messageSentDate;
+	}
 }

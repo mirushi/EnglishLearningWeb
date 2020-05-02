@@ -8,4 +8,20 @@ public class UserReminderProgram {
 	
 	@Id
 	private Protected_ReminderProgram reminderProgram;
+
+	public UserAccount getUser() {
+		return user;
+	}
+
+	public void setUser(UserAccount user) {
+		this.user = user;
+	}
+
+	public Protected_ReminderProgram getReminderProgram() {
+		return reminderProgram;
+	}
+
+	public void setReminderProgram(Protected_ReminderProgram reminderProgram) {
+		this.reminderProgram = reminderProgram;
+	}
 }

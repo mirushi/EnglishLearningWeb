@@ -21,4 +21,28 @@ public class DocGrammarNote {
 	@ManyToOne
 	@JoinColumn(name = "docGrammarForm")
 	private DocGrammarForm docGrammarForm;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public DocGrammarForm getDocGrammarForm() {
+		return docGrammarForm;
+	}
+
+	public void setDocGrammarForm(DocGrammarForm docGrammarForm) {
+		this.docGrammarForm = docGrammarForm;
+	}
 }

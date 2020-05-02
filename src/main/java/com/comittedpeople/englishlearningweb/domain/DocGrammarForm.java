@@ -25,10 +25,50 @@ public class DocGrammarForm {
 	private DocGrammar docGrammar;
 	
 	//Một nhiều đến các Example.
-	@OneToMany(mappedBy = "docgrammarform", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "docGrammarForm", cascade = CascadeType.ALL)
 	private Set<DocGrammarExample> examples;
 	
 	//Một nhiêu đến các Note.
-	@OneToMany(mappedBy = "docgrammarform", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "docGrammarForm", cascade = CascadeType.ALL)
 	private Set<DocGrammarNote> notes;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public DocGrammar getDocGrammar() {
+		return docGrammar;
+	}
+
+	public void setDocGrammar(DocGrammar docGrammar) {
+		this.docGrammar = docGrammar;
+	}
+
+	public Set<DocGrammarExample> getExamples() {
+		return examples;
+	}
+
+	public void setExamples(Set<DocGrammarExample> examples) {
+		this.examples = examples;
+	}
+
+	public Set<DocGrammarNote> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(Set<DocGrammarNote> notes) {
+		this.notes = notes;
+	}
 }
