@@ -14,8 +14,8 @@ import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabCategoryDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
-import com.comittedpeople.englishlearningweb.service.DocVocabCategoryService;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonService;
+import com.comittedpeople.englishlearningweb.services.DocVocabCategoryService;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonService;
 
 @Controller
 @RequestMapping("/api/v1/vocabCategories")
@@ -35,7 +35,6 @@ public class DocVocabCategoryController {
 	}
 	
 	//Lấy lesson của từng category với ID nhất định.
-	
 	@GetMapping(value = "{categoryID}")
 	public ResponseEntity<List<DocVocabLessonDTO>> getAllDocVocabLesson(@PathVariable Long categoryID){
 		return new ResponseEntity<List<DocVocabLessonDTO>> (docVocabLessonService.getAllVocabLessonsDTOByCategoryID(categoryID), HttpStatus.OK);

@@ -1,14 +1,16 @@
-package com.comittedpeople.englishlearningweb.service;
+package com.comittedpeople.englishlearningweb.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabContentMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabContentDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabContentMapper;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabContentRepository;
 
+@Service
 public class DocVocabContentServiceImpl implements DocVocabContentService{
 
 	@Autowired
@@ -17,8 +19,6 @@ public class DocVocabContentServiceImpl implements DocVocabContentService{
 	@Autowired
 	private final DocVocabContentRepository repository;
 	
-	
-	
 	public DocVocabContentServiceImpl(DocVocabContentMapper mapper, DocVocabContentRepository repository) {
 		super();
 		this.mapper = mapper;
@@ -26,7 +26,7 @@ public class DocVocabContentServiceImpl implements DocVocabContentService{
 	}
 	
 	@Override
-	public List<DocVocabContentDTO> getAllVocabContent(Long lessonID) {
+	public List<DocVocabContentDTO> getAllVocabContentByLessonId(Long lessonID) {
 		return repository.findByLessonId(lessonID)
 				.stream()
 				.map(mapper::docVocabContenttoContentDTO)

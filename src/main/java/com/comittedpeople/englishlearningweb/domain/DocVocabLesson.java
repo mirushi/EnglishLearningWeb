@@ -14,6 +14,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class DocVocabLesson {
 
@@ -31,6 +33,7 @@ public class DocVocabLesson {
 			cascade = CascadeType.ALL,
 			orphanRemoval = true
 	)
+	@JsonManagedReference
 	private Set<DocVocabContent> vocabs;
 	
 	@ManyToOne
@@ -60,4 +63,20 @@ public class DocVocabLesson {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	public Set<DocVocabContent> getVocabs() {
+		return vocabs;
+	}
+
+	public void setVocabs(Set<DocVocabContent> vocabs) {
+		this.vocabs = vocabs;
+	}
+
+	public DocVocabCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(DocVocabCategory category) {
+		this.category = category;
+	}
+
 }

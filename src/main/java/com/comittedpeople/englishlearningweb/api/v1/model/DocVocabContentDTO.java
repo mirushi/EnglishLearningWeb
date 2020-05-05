@@ -9,7 +9,7 @@ import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 
 public class DocVocabContentDTO {
 
-private Long id;
+	private Long id;
 	
 	private String content;
 	
@@ -20,10 +20,6 @@ private Long id;
 	
 	@Lob
 	private String description;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "lesson")
-	private DocVocabLesson lesson;
 
 	public Long getId() {
 		return id;
@@ -65,11 +61,4 @@ private Long id;
 		this.description = description;
 	}
 
-	public DocVocabLesson getLesson() {
-		return lesson;
-	}
-
-	public void setLesson(DocVocabLesson lesson) {
-		this.lesson = lesson;
-	}
 }

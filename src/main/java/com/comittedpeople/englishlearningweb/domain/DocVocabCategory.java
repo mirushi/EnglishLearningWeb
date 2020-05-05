@@ -32,9 +32,6 @@ public class DocVocabCategory {
 	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
 	private Set<DocVocabCategory> subCategories;
 	
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-	private Set<DocVocabContent> vocabs;
-	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<DocVocabLesson> vocabLessons;
 	
@@ -84,13 +81,5 @@ public class DocVocabCategory {
 
 	public void setSubCategories(Set<DocVocabCategory> subCategories) {
 		this.subCategories = subCategories;
-	}
-
-	public Set<DocVocabContent> getVocabs() {
-		return vocabs;
-	}
-
-	public void setVocabs(Set<DocVocabContent> vocabs) {
-		this.vocabs = vocabs;
 	}
 }

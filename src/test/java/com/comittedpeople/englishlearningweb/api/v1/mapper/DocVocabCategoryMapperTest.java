@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabCategoryDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabCategoryMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;

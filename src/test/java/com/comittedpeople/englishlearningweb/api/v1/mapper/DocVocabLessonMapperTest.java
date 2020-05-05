@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 
 public class DocVocabLessonMapperTest {

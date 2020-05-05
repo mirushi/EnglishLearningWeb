@@ -13,9 +13,9 @@ import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabContentDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
 import com.comittedpeople.englishlearningweb.domain.DocVocabContent;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
-import com.comittedpeople.englishlearningweb.service.DocVocabContentService;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonService;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonServiceImpl;
+import com.comittedpeople.englishlearningweb.services.DocVocabContentService;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonService;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonServiceImpl;
 
 @Controller
 @RequestMapping("/api/v1/vocabLessons")
@@ -32,6 +32,6 @@ public class DocVocabLessonController {
 	
 	@GetMapping(value = "{lessonID}")
 	public ResponseEntity<List<DocVocabContentDTO>> getAllDocVocabContent (@PathVariable Long lessonID){
-		return new ResponseEntity<List<DocVocabContentDTO>> (docVocabContentService.getAllVocabContent(lessonID), HttpStatus.OK);
+		return new ResponseEntity<List<DocVocabContentDTO>> (docVocabContentService.getAllVocabContentByLessonId(lessonID), HttpStatus.OK);
 	}
 }

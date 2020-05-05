@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class DocVocabContent {
 	
@@ -28,6 +30,7 @@ public class DocVocabContent {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "lesson")
+	@JsonBackReference
 	private DocVocabLesson lesson;
 
 	public Long getId() {

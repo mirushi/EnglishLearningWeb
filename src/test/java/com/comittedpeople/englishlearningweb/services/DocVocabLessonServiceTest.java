@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabCategoryMapper;
+import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabCategoryMapper;
+import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
-import com.comittedpeople.englishlearningweb.service.DocVocabCategoryServiceImpl;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonService;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonServiceImpl;
+import com.comittedpeople.englishlearningweb.services.DocVocabCategoryServiceImpl;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonService;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonServiceImpl;
 
 public class DocVocabLessonServiceTest {
 	DocVocabLessonService docVocabLessonService;
@@ -40,12 +40,16 @@ public class DocVocabLessonServiceTest {
 		System.out.println("Test DocVocabLesson called");
 		
 		//Giả sử.
-		List<DocVocabLesson> lessons = Arrays.asList(new DocVocabLesson(), new DocVocabLesson(), new DocVocabLesson());
+		DocVocabLesson vocabLesson1 = new DocVocabLesson();
+		vocabLesson1.setId(1L);
+		vocabLesson1.setImageURL("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/ContractLaw.jpg/270px-ContractLaw.jpg");
+		vocabLesson1.setTitle("Lesson Title");
+		
+		List<DocVocabLesson> lessons = Arrays.asList(vocabLesson1, new DocVocabLesson(), new DocVocabLesson());
 		
 		when(docVocabLessonRepository.findByCategoryId(anyLong())).thenReturn(lessons);
 		
 		List<DocVocabLessonDTO> lessonDTOs = docVocabLessonService.getAllVocabLessonsDTOByCategoryID(1L);
-		
 		assertEquals(3, lessonDTOs.size());
 	}
 }

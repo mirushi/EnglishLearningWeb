@@ -17,18 +17,18 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabCategoryMapper;
+import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabCategoryDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabCategoryMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
-import com.comittedpeople.englishlearningweb.service.DocVocabCategoryService;
-import com.comittedpeople.englishlearningweb.service.DocVocabCategoryServiceImpl;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonService;
-import com.comittedpeople.englishlearningweb.service.DocVocabLessonServiceImpl;
+import com.comittedpeople.englishlearningweb.services.DocVocabCategoryService;
+import com.comittedpeople.englishlearningweb.services.DocVocabCategoryServiceImpl;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonService;
+import com.comittedpeople.englishlearningweb.services.DocVocabLessonServiceImpl;
 
 public class DocVocabCategoryServiceTest {
 
