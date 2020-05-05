@@ -13,6 +13,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class DocGrammarCategory {
 
@@ -27,12 +30,15 @@ public class DocGrammarCategory {
 	
 	@ManyToOne
 	@JoinColumn(name = "parentCategory")
+	@JsonBackReference
 	private DocGrammarCategory parentCategory;
 	
 	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<DocGrammarCategory> subCategories;
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<DocGrammar> grammars;
 
 	public Long getId() {

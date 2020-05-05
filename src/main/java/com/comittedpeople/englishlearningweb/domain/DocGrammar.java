@@ -16,6 +16,9 @@ import javax.persistence.Table;
 import org.hibernate.CustomEntityDirtinessStrategy.DirtyCheckContext;
 import org.springframework.data.jpa.repository.Query;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import antlr.collections.List;
 
 @Entity
@@ -33,9 +36,11 @@ public class DocGrammar {
 	
 	@ManyToOne
 	@JoinColumn(name = "category")
+	@JsonBackReference
 	private DocGrammarCategory category;
 	
 	@OneToMany(mappedBy = "docGrammar", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<DocGrammarForm> forms;
 
 	public Long getId() {

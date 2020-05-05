@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class DocGrammarNote {
 
@@ -20,6 +22,7 @@ public class DocGrammarNote {
 	
 	@ManyToOne
 	@JoinColumn(name = "docGrammarForm")
+	@JsonBackReference
 	private DocGrammarForm docGrammarForm;
 
 	public Long getId() {

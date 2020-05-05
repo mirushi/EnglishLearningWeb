@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class DocGrammarForm {
 
@@ -22,14 +25,17 @@ public class DocGrammarForm {
 	
 	@ManyToOne
 	@JoinColumn(name = "docgrammar")
+	@JsonBackReference
 	private DocGrammar docGrammar;
 	
 	//Một nhiều đến các Example.
 	@OneToMany(mappedBy = "docGrammarForm", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<DocGrammarExample> examples;
 	
 	//Một nhiêu đến các Note.
 	@OneToMany(mappedBy = "docGrammarForm", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<DocGrammarNote> notes;
 
 	public Long getId() {

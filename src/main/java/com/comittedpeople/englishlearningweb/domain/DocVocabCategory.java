@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class DocVocabCategory {
 
@@ -27,12 +30,15 @@ public class DocVocabCategory {
 	
 	@ManyToOne
 	@JoinColumn(name = "parentCategory")
+	@JsonBackReference
 	private DocVocabCategory parentCategory;
 	
 	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<DocVocabCategory> subCategories;
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private Set<DocVocabLesson> vocabLessons;
 	
 	public DocVocabCategory() {
