@@ -7,25 +7,10 @@ public class DocGrammarCategoryDTO {
 	private Long id;
 	private String title;
 	private String description;
-	
-	private Long parentId;
-		
-	private List<DocGrammarCategoryDTO> childCategories;
+	private List<DocGrammarContentSummaryDTO> docGrammarContentSummary;
 	
 	public Long getId() {
 		return id;
-	}
-	public Long getParentId() {
-		return parentId;
-	}
-	public void setParentId(Long parentID) {
-		this.parentId = parentID;
-	}
-	public List<DocGrammarCategoryDTO> getChildCategories() {
-		return childCategories;
-	}
-	public void setChildCategories(List<DocGrammarCategoryDTO> childCategories) {
-		this.childCategories = childCategories;
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -41,5 +26,11 @@ public class DocGrammarCategoryDTO {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public List<DocGrammarContentSummaryDTO> getDocGrammarContentSummary() {
+		return docGrammarContentSummary;
+	}
+	public void setDocGrammarContentSummary(List<DocGrammarContentSummaryDTO> docGrammarContentSummary) {
+		this.docGrammarContentSummary = docGrammarContentSummary;
 	}
 }

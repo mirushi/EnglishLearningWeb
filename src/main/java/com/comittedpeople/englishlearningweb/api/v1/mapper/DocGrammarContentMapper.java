@@ -11,10 +11,9 @@ import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 public interface DocGrammarContentMapper {
 
 	DocGrammarContentMapper INSTANCE = Mappers.getMapper(DocGrammarContentMapper.class);
-	
+		
 	@Mapping(source = "id", target = "id")
 	@Mapping(source = "category.id", target = "categoryID")
 	@Mapping(source = "forms", target = "forms")
 	DocGrammarContentDTO docGrammarContenttoContentDTO (DocGrammarContent content);
-	
 }

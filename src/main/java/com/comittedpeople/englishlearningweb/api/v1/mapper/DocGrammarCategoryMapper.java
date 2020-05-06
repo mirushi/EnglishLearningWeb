@@ -7,13 +7,12 @@ import org.mapstruct.factory.Mappers;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarCategoryDTO;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
 
-@Mapper
+@Mapper(uses = DocGrammarContentSummaryMapper.class)
 public interface DocGrammarCategoryMapper {
 
 	DocGrammarCategoryMapper INSTANCE = Mappers.getMapper(DocGrammarCategoryMapper.class);
 	
 	@Mapping(source = "id", target = "id")
-	@Mapping(source = "parentCategory.id", target = "parentId")
-	@Mapping(source = "subCategories", target = "childCategories")
+	@Mapping(source = "grammars", target = "docGrammarContentSummary")
 	DocGrammarCategoryDTO docGrammarCategorytoCategoryDTO (DocGrammarCategory category);
 }

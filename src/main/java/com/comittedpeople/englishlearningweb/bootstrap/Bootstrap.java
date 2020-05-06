@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -12,9 +13,19 @@ import javax.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarExample;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarForm;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarNote;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabContent;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
+import com.comittedpeople.englishlearningweb.repositories.DocGrammarCategoryRepository;
+import com.comittedpeople.englishlearningweb.repositories.DocGrammarContentRepository;
+import com.comittedpeople.englishlearningweb.repositories.DocGrammarExampleRepository;
+import com.comittedpeople.englishlearningweb.repositories.DocGrammarFormRepository;
+import com.comittedpeople.englishlearningweb.repositories.DocGrammarNoteRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabContentRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
@@ -29,12 +40,32 @@ public class Bootstrap implements CommandLineRunner {
 	
 	private DocVocabContentRepository docVocabContentRepository;
 	
-	public Bootstrap(DocVocabCategoryRepository docVocabCategoryRepository, 
-			DocVocabLessonRepository docVocabLessonRepository, DocVocabContentRepository docVocabContentRepository) {
-		this.docVocabContentRepository = docVocabContentRepository;
-		this.docVocabLessonRepository = docVocabLessonRepository;
-		
+	private DocGrammarCategoryRepository docGrammarCategoryRepository;
+	
+	private DocGrammarExampleRepository docGrammarExampleRepository;
+	
+	private DocGrammarNoteRepository docGrammarNoteRepository;
+	
+	private DocGrammarContentRepository docGrammarContentRepository;
+	
+	private DocGrammarFormRepository docGrammarFormRepository;
+
+
+	public Bootstrap(DocVocabCategoryRepository docVocabCategoryRepository,
+			DocVocabLessonRepository docVocabLessonRepository, DocVocabContentRepository docVocabContentRepository,
+			DocGrammarCategoryRepository docGrammarCategoryRepository,
+			DocGrammarExampleRepository docGrammarExampleRepository, DocGrammarNoteRepository docGrammarNoteRepository,
+			DocGrammarContentRepository docGrammarContentRepository,
+			DocGrammarFormRepository docGrammarFormRepository) {
+		super();
 		this.docVocabCategoryRepository = docVocabCategoryRepository;
+		this.docVocabLessonRepository = docVocabLessonRepository;
+		this.docVocabContentRepository = docVocabContentRepository;
+		this.docGrammarCategoryRepository = docGrammarCategoryRepository;
+		this.docGrammarExampleRepository = docGrammarExampleRepository;
+		this.docGrammarNoteRepository = docGrammarNoteRepository;
+		this.docGrammarContentRepository = docGrammarContentRepository;
+		this.docGrammarFormRepository = docGrammarFormRepository;
 	}
 
 	@Override
@@ -44,8 +75,120 @@ public class Bootstrap implements CommandLineRunner {
 		setupVocabLesson();
 		
 		setupVocabContent();
+		
+		setupGrammarExample();
+		
+		setupGrammarNote();
+//		
+		setupGrammarForm();
+//		
+		setupGrammarContent();
+//		
+		setupGrammarCategory();
 	}
 	
+	private void setupGrammarExample() {
+		DocGrammarExample ex1 = getGrammarExample(1L, "Example 1", "Image 1");
+		DocGrammarExample ex2 = getGrammarExample(2L, "Example 2", "Image 2");
+		DocGrammarExample ex3 = getGrammarExample(3L, "Example 3", "Image 3");
+		DocGrammarExample ex4 = getGrammarExample(4L, "Example 4", "Image 4");
+		DocGrammarExample ex5 = getGrammarExample(5L, "Example 5", "Image 5");
+		DocGrammarExample ex6 = getGrammarExample(6L, "Example 6", "Image 6");
+		
+		docGrammarExampleRepository.save(ex1);
+		docGrammarExampleRepository.save(ex2);
+		docGrammarExampleRepository.save(ex3);
+		docGrammarExampleRepository.save(ex4);
+		docGrammarExampleRepository.save(ex5);
+		docGrammarExampleRepository.save(ex6);
+	}
+	
+	private void setupGrammarNote() {
+		DocGrammarNote note1 = getGrammarNote(1L, "Note 1");
+		DocGrammarNote note2 = getGrammarNote(2L, "Note 2");
+		DocGrammarNote note3 = getGrammarNote(3L, "Note 3");
+		DocGrammarNote note4 = getGrammarNote(4L, "Note 4");
+		DocGrammarNote note5 = getGrammarNote(5L, "Note 5");
+		DocGrammarNote note6 = getGrammarNote(6L, "Note 6");
+		
+		docGrammarNoteRepository.save(note1);
+		docGrammarNoteRepository.save(note2);
+		docGrammarNoteRepository.save(note3);
+		docGrammarNoteRepository.save(note4);
+		docGrammarNoteRepository.save(note5);
+		docGrammarNoteRepository.save(note6);
+	}
+	
+	private void setupGrammarForm() {
+		
+		DocGrammarExample ex1 = docGrammarExampleRepository.getOne(1L);
+		DocGrammarExample ex2 = docGrammarExampleRepository.getOne(2L);
+		DocGrammarExample ex3 = docGrammarExampleRepository.getOne(3L);
+		DocGrammarExample ex4 = docGrammarExampleRepository.getOne(4L);
+		DocGrammarExample ex5 = docGrammarExampleRepository.getOne(5L);
+		DocGrammarExample ex6 = docGrammarExampleRepository.getOne(6L);
+		
+		List<DocGrammarExample> docGrammarExamples1 = Arrays.asList(ex1, ex2);
+		List<DocGrammarExample> docGrammarExamples2 = Arrays.asList(ex3, ex4);
+
+		
+		DocGrammarNote note1 = docGrammarNoteRepository.getOne(1L);
+		DocGrammarNote note2 = docGrammarNoteRepository.getOne(2L);
+		DocGrammarNote note3 = docGrammarNoteRepository.getOne(3L);
+		DocGrammarNote note4 = docGrammarNoteRepository.getOne(4L);
+		DocGrammarNote note5 = docGrammarNoteRepository.getOne(5L);
+		DocGrammarNote note6 = docGrammarNoteRepository.getOne(6L);
+		
+		List<DocGrammarNote> grammarNotes1 = Arrays.asList(note1, note2);
+		List<DocGrammarNote> grammarNotes2 = Arrays.asList(note3, note4);
+		
+		DocGrammarForm form = getGrammarForm(1L, "Forming the comparative", "Words of one syllable ending in e",
+				"Add -r to the end of word", "Wide - Wider", docGrammarExamples1, grammarNotes1);
+		
+
+		DocGrammarForm form2 = getGrammarForm(2L, "Forming the comparative 2", "Words of one syllable ending in e",
+				"Add -r to the end of word", "Wide - Wider", docGrammarExamples2, grammarNotes2);
+
+		DocGrammarForm form3 = getGrammarForm(3L, "Forming the comparative 3", "Words of one syllable ending in e",
+				"Add -r to the end of word", "Wide - Wider", Arrays.asList(ex5), Arrays.asList(note5));
+		
+		DocGrammarForm form4 = getGrammarForm(4L, "Forming the comparative 4", "Words of one syllable ending in e",
+				"Add -r to the end of word", "Wide - Wider", Arrays.asList(ex6), Arrays.asList(note6));
+		
+		docGrammarFormRepository.save(form);
+		docGrammarFormRepository.save(form2);
+		docGrammarFormRepository.save(form3);
+		docGrammarFormRepository.save(form4);
+	}
+	
+	private void setupGrammarContent() {
+		
+		DocGrammarForm form = docGrammarFormRepository.getOne(1L);
+		DocGrammarForm form2 = docGrammarFormRepository.getOne(2L);
+		DocGrammarForm form3 = docGrammarFormRepository.getOne(3L);
+		DocGrammarForm form4 = docGrammarFormRepository.getOne(4L);
+		
+		List<DocGrammarForm> grammarForms = Arrays.asList(form, form2);
+		List<DocGrammarForm> grammarForms2 = Arrays.asList(form3, form4);
+		
+		DocGrammarContent content1 = getGrammarContent(1L, "Comparative", "When we compare things...", grammarForms);
+		DocGrammarContent content2 = getGrammarContent(2L, "Comparative 2", "When we ...", grammarForms2);
+		
+		docGrammarContentRepository.save(content1);
+		docGrammarContentRepository.save(content2);
+	}
+	
+	private void setupGrammarCategory() {
+		DocGrammarContent content1 = docGrammarContentRepository.getOne(1L);
+		DocGrammarContent content2 = docGrammarContentRepository.getOne(2L);
+		
+		List<DocGrammarContent> contents = Arrays.asList(content1, content2);
+		
+		DocGrammarCategory category = getGrammarCategory(1L, "Adjective", "It's adjective", contents);
+		
+		docGrammarCategoryRepository.save(category);
+		
+	}
 	
 	private void setupVocabContent() {
 		
@@ -240,7 +383,6 @@ public class Bootstrap implements CommandLineRunner {
 		System.out.println("DocVocabLesson loaded : " + docVocabLessonRepository.count());
 //		System.out.println("Cat 1 : " + cat01.getTitle());
 	}
-	
 	private void setupVocabCategories () {
 		DocVocabCategory general = new DocVocabCategory();
 		general.setTitle("General topic");
@@ -259,6 +401,78 @@ public class Bootstrap implements CommandLineRunner {
 		docVocabCategoryRepository.save(longManVocab);
 		
 		System.out.println("DocVocabCategory loaded : " + docVocabCategoryRepository.count());
+	}
+	
+	private DocGrammarCategory getGrammarCategory(Long id, String title, String description, List<DocGrammarContent> grammars) {
+		DocGrammarCategory category = new DocGrammarCategory();
+		
+		for (DocGrammarContent content : grammars) {
+			content.setCategory(category);
+		}
+		
+		category.setId(id);
+		category.setTitle(title);
+		category.setDescription(description);
+		category.setGrammars(new HashSet<DocGrammarContent>(grammars));
+		
+		return category;
+	}
+	
+	private DocGrammarContent getGrammarContent(Long id, String title, String description, List<DocGrammarForm> forms) {
+		DocGrammarContent grammarContent = new DocGrammarContent();
+		
+		for (DocGrammarForm form : forms) {
+			form.setDocGrammarContent(grammarContent);
+		}
+		
+		grammarContent.setTitle(title);
+		grammarContent.setId(id);
+		grammarContent.setDescription(description);
+		grammarContent.setForms(new HashSet<>(forms));
+		
+		return grammarContent;
+		
+	}
+
+	private DocGrammarForm getGrammarForm(Long ID, String title, String usage, String useCase, String how,
+			List<DocGrammarExample> examples, List<DocGrammarNote> notes) {
+		DocGrammarForm form = new DocGrammarForm();
+
+		for (DocGrammarExample example : examples) {
+			example.setDocGrammarForm(form);
+		}
+		for (DocGrammarNote note : notes) {
+			note.setDocGrammarForm(form);
+		}
+		
+		form.setExamples(new HashSet<DocGrammarExample>(examples));
+		form.setHow(how);
+		form.setId(ID);
+		form.setNotes(new HashSet<DocGrammarNote>(notes));
+		form.setTitle(title);
+		form.setUsage(usage);
+		form.setUseCase(useCase);
+
+		return form;
+	}
+
+	private DocGrammarExample getGrammarExample(Long ID, String content, String imageURL) {
+		DocGrammarExample res = new DocGrammarExample();
+
+		res.setId(ID);
+		res.setContent(content);
+		res.setImageURL(imageURL);
+
+		return res;
+
+	}
+
+	private DocGrammarNote getGrammarNote(Long id, String content) {
+		DocGrammarNote result = new DocGrammarNote();
+		result.setId(id);
+		result.setContent(content);
+
+		return result;
 	}
 	
 }

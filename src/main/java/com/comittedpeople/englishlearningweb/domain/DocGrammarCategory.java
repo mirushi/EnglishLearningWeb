@@ -28,15 +28,6 @@ public class DocGrammarCategory {
 	@Lob
 	private String description;
 	
-	@ManyToOne
-	@JoinColumn(name = "parentCategory")
-	@JsonBackReference
-	private DocGrammarCategory parentCategory;
-	
-	@OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private Set<DocGrammarCategory> subCategories;
-	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<DocGrammarContent> grammars;
@@ -63,22 +54,6 @@ public class DocGrammarCategory {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public DocGrammarCategory getParentCategory() {
-		return parentCategory;
-	}
-
-	public void setParentCategory(DocGrammarCategory parentCategory) {
-		this.parentCategory = parentCategory;
-	}
-
-	public Set<DocGrammarCategory> getSubCategories() {
-		return subCategories;
-	}
-
-	public void setSubCategories(Set<DocGrammarCategory> subCategories) {
-		this.subCategories = subCategories;
 	}
 
 	public Set<DocGrammarContent> getGrammars() {
