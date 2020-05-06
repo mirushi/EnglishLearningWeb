@@ -46,10 +46,15 @@ public class Bootstrap implements CommandLineRunner {
 		setupVocabContent();
 	}
 	
+	
 	private void setupVocabContent() {
 		
 		DocVocabLesson lesson1 = docVocabLessonRepository.findById(1L).get();
 		DocVocabLesson lesson2 = docVocabLessonRepository.findById(2L).get();
+		DocVocabLesson lesson3 = docVocabLessonRepository.getOne(3L);
+		DocVocabLesson lesson4 = docVocabLessonRepository.getOne(4L);
+		DocVocabLesson lesson5 = docVocabLessonRepository.getOne(5L);
+		DocVocabLesson lesson6 = docVocabLessonRepository.getOne(6L);
 		
 		DocVocabContent content1lesson1 = new DocVocabContent();
 		content1lesson1.setContent("English");
@@ -83,17 +88,100 @@ public class Bootstrap implements CommandLineRunner {
 		content2lesson2.setSpelling("/ɪkˈstrɔːdnri/");
 		content2lesson2.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/e/ext/extra/extraordinary__gb_1.mp3");
 
+		DocVocabContent content1lesson3 = new DocVocabContent();
+		content1lesson3.setContent("inspire");
+		content1lesson3.setDescription("to give somebody the desire, confidence or enthusiasm to do something well");
+		content1lesson3.setId(5L);
+		content1lesson3.setLesson(lesson3);
+		content1lesson3.setSpelling("/ɪnˈspaɪə(r)/");
+		content1lesson3.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/i/ins/inspi/inspire__gb_1.mp3");
+
+		DocVocabContent content2lesson3 = new DocVocabContent();
+		content2lesson3.setContent("innovate");
+		content2lesson3.setDescription("to introduce new things, ideas or ways of doing something");
+		content2lesson3.setId(6L);
+		content2lesson3.setLesson(lesson3);
+		content2lesson3.setSpelling("/ˈɪnəveɪt/");
+		content2lesson3.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/i/inn/innov/innovate__gb_1.mp3");
+
+		DocVocabContent content1lesson4 = new DocVocabContent();
+		content1lesson4.setContent("brilliant");
+		content1lesson4.setDescription("extremely clever or impressive");
+		content1lesson4.setId(7L);
+		content1lesson4.setLesson(lesson4);
+		content1lesson4.setSpelling("/ˈbrɪliənt/");
+		content1lesson4.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/b/bri/brill/brilliant__gb_1.mp3");
+		
+		DocVocabContent content2lesson4 = new DocVocabContent();
+		content2lesson4.setContent("exceptional");
+		content2lesson4.setDescription("unusually good");
+		content2lesson4.setId(8L);
+		content2lesson4.setLesson(lesson4);
+		content2lesson4.setSpelling("/ɪkˈsepʃənl/");
+		content2lesson4.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/e/exc/excep/exceptional__gb_1.mp3");
+		
+		DocVocabContent content1lesson5 = new DocVocabContent();
+		content1lesson5.setContent("creative");
+		content1lesson5.setDescription("involving the use of skill and the imagination to produce something new or a work of art");
+		content1lesson5.setId(9L);
+		content1lesson5.setLesson(lesson5);
+		content1lesson5.setSpelling("/kriˈeɪtɪv/");
+		content1lesson5.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/c/cre/creat/creative__gb_3.mp3");
+		
+		
+		DocVocabContent content2lesson5 = new DocVocabContent();
+		content2lesson5.setContent("fascinating");
+		content2lesson5.setDescription("extremely interesting and attractive");
+		content2lesson5.setId(10L);
+		content2lesson5.setLesson(lesson5);
+		content2lesson5.setSpelling("/ˈfæsɪneɪtɪŋ/");
+		content2lesson5.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/f/fas/fasci/fascinating__gb_1.mp3");
+		
+		DocVocabContent content1lesson6 = new DocVocabContent();
+		content1lesson6.setContent("marvellous");
+		content1lesson6.setDescription("extremely good; wonderful");
+		content1lesson6.setId(11L);
+		content1lesson6.setLesson(lesson6);
+		content1lesson6.setSpelling("/ˈmɑːvələs/");
+		content1lesson6.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/m/mar/marve/marvellous__gb_1.mp3");
+		
+		DocVocabContent content2lesson6 = new DocVocabContent();
+		content2lesson6.setContent("complete");
+		content2lesson6.setDescription("including all the parts, etc. that are necessary; whole");
+		content2lesson6.setId(12L);
+		content2lesson6.setLesson(lesson6);
+		content2lesson6.setSpelling("/kəmˈpliːt/");
+		content2lesson6.setSpellingAudioURL("https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/c/com/compl/complete__gb_2.mp3");
+		
+		
 		//Sau khi thêm xong từ vựng thì ta cập nhật lại lesson với từ vựng mới.
 		lesson1.setVocabs(new HashSet<>(Arrays.asList(content1lesson1,content2lesson1)));
-		lesson2.setVocabs(new HashSet<DocVocabContent>(Arrays.asList(content1lesson2, content2lesson2)));
+		lesson2.setVocabs(new HashSet<>(Arrays.asList(content1lesson2, content2lesson2)));
+		lesson3.setVocabs(new HashSet<>(Arrays.asList(content1lesson3, content2lesson3)));
+		lesson4.setVocabs(new HashSet<>(Arrays.asList(content1lesson4, content2lesson4)));
+		lesson5.setVocabs(new HashSet<>(Arrays.asList(content1lesson5, content2lesson5)));
+		lesson6.setVocabs(new HashSet<>(Arrays.asList(content1lesson6, content2lesson6)));
 		
 		docVocabContentRepository.save(content1lesson1);
 		docVocabContentRepository.save(content2lesson1);
 		docVocabContentRepository.save(content1lesson2);
 		docVocabContentRepository.save(content2lesson2);
+		docVocabContentRepository.save(content1lesson3);
+		docVocabContentRepository.save(content2lesson3);
+		docVocabContentRepository.save(content1lesson4);
+		docVocabContentRepository.save(content2lesson4);
+		docVocabContentRepository.save(content1lesson5);
+		docVocabContentRepository.save(content2lesson5);
+		docVocabContentRepository.save(content1lesson6);
+		docVocabContentRepository.save(content2lesson6);
 		
 		docVocabLessonRepository.save(lesson1);
 		docVocabLessonRepository.save(lesson2);
+		docVocabLessonRepository.save(lesson3);
+		docVocabLessonRepository.save(lesson4);
+		docVocabLessonRepository.save(lesson5);
+		docVocabLessonRepository.save(lesson6);
+		
 		
 		System.out.println("DocVocabContent loaded : " + docVocabContentRepository.count());
 //		System.out.println("Lesson1 : " + lesson1.getTitle());

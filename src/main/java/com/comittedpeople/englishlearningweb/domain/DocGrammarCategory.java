@@ -39,7 +39,7 @@ public class DocGrammarCategory {
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private Set<DocGrammar> grammars;
+	private Set<DocGrammarContent> grammars;
 
 	public Long getId() {
 		return id;
@@ -81,11 +81,11 @@ public class DocGrammarCategory {
 		this.subCategories = subCategories;
 	}
 
-	public Set<DocGrammar> getGrammars() {
+	public Set<DocGrammarContent> getGrammars() {
 		return grammars;
 	}
 
-	public void setGrammars(Set<DocGrammar> grammars) {
+	public void setGrammars(Set<DocGrammarContent> grammars) {
 		this.grammars = grammars;
 	}
 }

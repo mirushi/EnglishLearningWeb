@@ -22,14 +22,14 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import antlr.collections.List;
 
 @Entity
-@Table(name = "DocGrammar")
-public class DocGrammar {
+@Table(name = "DocGrammarContent")
+public class DocGrammarContent {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String title;
+	private String title;	
 
 	@Lob
 	private String description;
@@ -39,7 +39,7 @@ public class DocGrammar {
 	@JsonBackReference
 	private DocGrammarCategory category;
 	
-	@OneToMany(mappedBy = "docGrammar", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "docGrammarContent", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<DocGrammarForm> forms;
 

@@ -22,6 +22,8 @@ public class DocGrammarExample {
 	@Lob
 	private String content;
 	
+	private String imageURL;
+	
 	@ManyToOne
 	@JoinColumn(name = "docGrammarForm")
 	@JsonBackReference
@@ -49,5 +51,12 @@ public class DocGrammarExample {
 
 	public void setDocGrammarForm(DocGrammarForm docGrammarForm) {
 		this.docGrammarForm = docGrammarForm;
+	}
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 }

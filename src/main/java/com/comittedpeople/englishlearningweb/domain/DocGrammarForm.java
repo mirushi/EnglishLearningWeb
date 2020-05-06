@@ -23,10 +23,16 @@ public class DocGrammarForm {
 	
 	private String title;
 	
+	private String how;
+	
+	private String usage;
+	
+	private String useCase;
+	
 	@ManyToOne
 	@JoinColumn(name = "docgrammar")
 	@JsonBackReference
-	private DocGrammar docGrammar;
+	private DocGrammarContent docGrammarContent;
 	
 	//Một nhiều đến các Example.
 	@OneToMany(mappedBy = "docGrammarForm", cascade = CascadeType.ALL)
@@ -54,12 +60,36 @@ public class DocGrammarForm {
 		this.title = title;
 	}
 
-	public DocGrammar getDocGrammar() {
-		return docGrammar;
+	public String getHow() {
+		return how;
 	}
 
-	public void setDocGrammar(DocGrammar docGrammar) {
-		this.docGrammar = docGrammar;
+	public void setHow(String how) {
+		this.how = how;
+	}
+
+	public String getUsage() {
+		return usage;
+	}
+
+	public void setUsage(String usage) {
+		this.usage = usage;
+	}
+
+	public String getUseCase() {
+		return useCase;
+	}
+
+	public void setUseCase(String useCase) {
+		this.useCase = useCase;
+	}
+
+	public DocGrammarContent getDocGrammarContent() {
+		return docGrammarContent;
+	}
+
+	public void setDocGrammarContent(DocGrammarContent docGrammarContent) {
+		this.docGrammarContent = docGrammarContent;
 	}
 
 	public Set<DocGrammarExample> getExamples() {
