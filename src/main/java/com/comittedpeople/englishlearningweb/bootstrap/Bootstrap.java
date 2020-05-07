@@ -233,13 +233,13 @@ public class Bootstrap implements CommandLineRunner {
 				"https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/d/det/deter/determine__gb_1.mp3");
 
 		DocVocabContent content1lesson2 = new DocVocabContent();
-		content1lesson2.setContent("/success/");
+		content1lesson2.setContent("Success");
 		content1lesson2.setDescription("[uncountable] the fact that you have achieved something that you want and have been trying to do or get ");
 		content1lesson2.setId(3L);
 		content1lesson2.setLesson(lesson2);
 		content1lesson2.setSpelling("/səkˈses/");
 		content1lesson2.setSpellingAudioURL(
-				"https://www.oxfordlearnersdictionaries.com/media/english/us_pron/s/suc/succe/success__us_2");
+				"https://www.oxfordlearnersdictionaries.com/media/english/us_pron/s/suc/succe/success__us_2.mp3");
 
 		DocVocabContent content2lesson2 = new DocVocabContent();
 		content2lesson2.setContent("Extraordinary");
