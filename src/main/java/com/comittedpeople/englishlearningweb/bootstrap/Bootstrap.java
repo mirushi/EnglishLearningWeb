@@ -10,7 +10,9 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
@@ -21,6 +23,7 @@ import com.comittedpeople.englishlearningweb.domain.DocGrammarNote;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabContent;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
+import com.comittedpeople.englishlearningweb.domain.UserAccount;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarContentRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarExampleRepository;
@@ -29,6 +32,7 @@ import com.comittedpeople.englishlearningweb.repositories.DocGrammarNoteReposito
 import com.comittedpeople.englishlearningweb.repositories.DocVocabCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabContentRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
+import com.comittedpeople.englishlearningweb.repositories.UserAccountRepository;
 
 @Component
 @Transactional
@@ -49,14 +53,19 @@ public class Bootstrap implements CommandLineRunner {
 	private DocGrammarContentRepository docGrammarContentRepository;
 	
 	private DocGrammarFormRepository docGrammarFormRepository;
-
-
+	
+	private UserAccountRepository userAccountRepository;
+	
+	//PasswordEncoder dùng để mã hoá mật khẩu cho user.
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	public Bootstrap(DocVocabCategoryRepository docVocabCategoryRepository,
 			DocVocabLessonRepository docVocabLessonRepository, DocVocabContentRepository docVocabContentRepository,
 			DocGrammarCategoryRepository docGrammarCategoryRepository,
 			DocGrammarExampleRepository docGrammarExampleRepository, DocGrammarNoteRepository docGrammarNoteRepository,
-			DocGrammarContentRepository docGrammarContentRepository,
-			DocGrammarFormRepository docGrammarFormRepository) {
+			DocGrammarContentRepository docGrammarContentRepository, DocGrammarFormRepository docGrammarFormRepository,
+			UserAccountRepository userAccountRepository, PasswordEncoder passwordEncoder) {
 		super();
 		this.docVocabCategoryRepository = docVocabCategoryRepository;
 		this.docVocabLessonRepository = docVocabLessonRepository;
@@ -66,6 +75,8 @@ public class Bootstrap implements CommandLineRunner {
 		this.docGrammarNoteRepository = docGrammarNoteRepository;
 		this.docGrammarContentRepository = docGrammarContentRepository;
 		this.docGrammarFormRepository = docGrammarFormRepository;
+		this.userAccountRepository = userAccountRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -85,6 +96,23 @@ public class Bootstrap implements CommandLineRunner {
 		setupGrammarContent();
 //		
 		setupGrammarCategory();
+		
+		setupUserAccount();
+	}
+	
+	private void setupUserAccount() {
+		UserAccount account = new UserAccount();
+		
+		account.setId(1L);
+		account.setUsername("admin");
+		account.setPassword(passwordEncoder.encode("123"));
+		account.setEnabled(true);
+		account.setEmail("committedpeople@gmail.com");
+		account.setDisplayname("Committed");
+		
+		userAccountRepository.save(account);
+		
+		System.out.println("User : " + account);
 	}
 	
 	private void setupGrammarExample() {
@@ -187,7 +215,6 @@ public class Bootstrap implements CommandLineRunner {
 		DocGrammarCategory category = getGrammarCategory(1L, "Adjective", "It's adjective", contents);
 		
 		docGrammarCategoryRepository.save(category);
-		
 	}
 	
 	private void setupVocabContent() {

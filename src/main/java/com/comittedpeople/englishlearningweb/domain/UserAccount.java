@@ -3,6 +3,7 @@ package com.comittedpeople.englishlearningweb.domain;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,9 @@ public class UserAccount {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String userName;
-	private String displayName;
+	@Column(nullable = false, unique = true)
+	private String username;
+	private String displayname;
 	
 	private String email;
 	
@@ -39,20 +41,20 @@ public class UserAccount {
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getDisplayName() {
-		return displayName;
+	public String getDisplayname() {
+		return displayname;
 	}
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public void setDisplayname(String displayname) {
+		this.displayname = displayname;
 	}
 
 	public String getEmail() {
