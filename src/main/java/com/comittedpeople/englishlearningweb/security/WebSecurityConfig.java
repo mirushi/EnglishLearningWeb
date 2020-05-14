@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -51,12 +52,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		.antMatchers("/api/v1/auth/*").permitAll()
 //		.anyRequest().authenticated();
 		
+		//Best config.
 		http.cors()
 		.and().csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+		.and()
 		.authorizeRequests()
-		.antMatchers("/api/v1/users").authenticated()
+		.antMatchers("/api/v1/users").hasRole("USER")
+		.and()
+		.authorizeRequests().antMatchers("/api/v1/admin").hasRole("ADMIN")
+		.and().authorizeRequests()
+		.antMatchers("h2-console/**").permitAll()
 		.anyRequest().permitAll();
 		
+		//Disable Spring Security for H2.
+		http.headers().frameOptions().disable();
+
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 }

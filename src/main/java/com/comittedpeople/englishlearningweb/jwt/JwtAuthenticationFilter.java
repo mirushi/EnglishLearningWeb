@@ -54,6 +54,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 			e.printStackTrace();
 		}
 		
+		
+		//Cho phép HTTP Request đi qua DispatcherServlet của Spring và các Controller.
 		filterChain.doFilter(request, response);
 		
 	}

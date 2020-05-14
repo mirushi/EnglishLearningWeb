@@ -1,7 +1,12 @@
 package com.comittedpeople.englishlearningweb.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+import javax.transaction.Transactional;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,7 +23,17 @@ public class UserDetailsCustom implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		//Trước mắt thì để là ROLE_USER trước.
-		return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+		//Sau mắt thì phải đổi lại :v.
+		
+		List<SimpleGrantedAuthority> result = new ArrayList<>();
+		
+		Set<AccountAuthority> authorities = useraccount.getAuthorities();
+		
+		for (AccountAuthority auth : authorities) {
+			result.add(new SimpleGrantedAuthority(auth.getName()));
+		}
+		
+		return result;
 	}
 
 	@Override

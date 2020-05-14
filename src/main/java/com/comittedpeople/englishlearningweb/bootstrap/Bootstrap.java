@@ -14,6 +14,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.comittedpeople.englishlearningweb.domain.AccountAuthority;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarExample;
@@ -23,6 +24,7 @@ import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabContent;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 import com.comittedpeople.englishlearningweb.domain.UserAccount;
+import com.comittedpeople.englishlearningweb.repositories.AccountAuthorityRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarContentRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarExampleRepository;
@@ -32,6 +34,8 @@ import com.comittedpeople.englishlearningweb.repositories.DocVocabCategoryReposi
 import com.comittedpeople.englishlearningweb.repositories.DocVocabContentRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
 import com.comittedpeople.englishlearningweb.repositories.UserAccountRepository;
+
+import io.jsonwebtoken.lang.Collections;
 
 @Component
 @Transactional
@@ -54,6 +58,8 @@ public class Bootstrap implements CommandLineRunner {
 	
 	private UserAccountRepository userAccountRepository;
 	
+	private AccountAuthorityRepository authorityRepository;
+	
 	//PasswordEncoder dùng để mã hoá mật khẩu cho user.
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -63,7 +69,8 @@ public class Bootstrap implements CommandLineRunner {
 			DocGrammarCategoryRepository docGrammarCategoryRepository,
 			DocGrammarExampleRepository docGrammarExampleRepository, DocGrammarNoteRepository docGrammarNoteRepository,
 			DocGrammarContentRepository docGrammarContentRepository, DocGrammarFormRepository docGrammarFormRepository,
-			UserAccountRepository userAccountRepository, PasswordEncoder passwordEncoder) {
+			UserAccountRepository userAccountRepository, AccountAuthorityRepository accountRepository,
+			PasswordEncoder passwordEncoder) {
 		super();
 		this.docVocabCategoryRepository = docVocabCategoryRepository;
 		this.docVocabLessonRepository = docVocabLessonRepository;
@@ -74,6 +81,7 @@ public class Bootstrap implements CommandLineRunner {
 		this.docGrammarContentRepository = docGrammarContentRepository;
 		this.docGrammarFormRepository = docGrammarFormRepository;
 		this.userAccountRepository = userAccountRepository;
+		this.authorityRepository = accountRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -95,22 +103,62 @@ public class Bootstrap implements CommandLineRunner {
 //		
 		setupGrammarCategory();
 		
+		setupAccountAuthority();
+		
 		setupUserAccount();
 	}
 	
+	private void setupAccountAuthority() {
+		AccountAuthority admin = new AccountAuthority();
+		admin.setId(1L);
+		admin.setName("ROLE_ADMIN");
+		
+		AccountAuthority user = new AccountAuthority();
+		user.setId(2L);
+		user.setName("ROLE_USER");
+		
+		authorityRepository.save(admin);
+		authorityRepository.save(user);
+		
+	}
+	
 	private void setupUserAccount() {
-		UserAccount account = new UserAccount();
 		
-		account.setId(1L);
-		account.setUsername("admin");
-		account.setPassword(passwordEncoder.encode("123"));
-		account.setEnabled(true);
-		account.setEmail("committedpeople@gmail.com");
-		account.setDisplayname("Committed");
+		AccountAuthority admin = authorityRepository.findByName("ROLE_ADMIN");
+		AccountAuthority user = authorityRepository.findByName("ROLE_USER");
 		
-		userAccountRepository.save(account);
+		UserAccount adminAccount = new UserAccount();
 		
-		System.out.println("User : " + account);
+		adminAccount.setId(1L);
+		adminAccount.setUsername("admin");
+		adminAccount.setPassword(passwordEncoder.encode("123"));
+		adminAccount.setEnabled(true);
+		adminAccount.setEmail("committedpeople@gmail.com");
+		adminAccount.setDisplayname("Committed");
+		
+		adminAccount.getAuthorities().addAll(Arrays.asList(admin,user));
+		
+		userAccountRepository.save(adminAccount);
+		
+		UserAccount userAccount = new UserAccount();
+		userAccount.setId(2L);
+		userAccount.setUsername("user");
+		userAccount.setPassword(passwordEncoder.encode("cmpp"));
+		userAccount.setEnabled(true);
+		userAccount.setEmail("committedpeople@gmail.com");
+		userAccount.setDisplayname("Committed");
+		
+		userAccount.getAuthorities().addAll(Arrays.asList(user));
+		
+		admin.getUsers().add(adminAccount);
+		user.getUsers().addAll(Arrays.asList(userAccount, adminAccount));
+		
+		userAccountRepository.save(userAccount);
+		
+		authorityRepository.save(admin);
+		authorityRepository.save(user);
+		
+		System.out.println("User : " + userAccountRepository.count());
 	}
 
 	private void setupGrammarExample() {

@@ -1,13 +1,19 @@
 package com.comittedpeople.englishlearningweb.domain;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,7 +33,18 @@ public class UserAccount {
 	
 	private String password;
 	
+	
 	private Boolean enabled;
+	
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	}, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_account_authorities",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "authority_id")
+	)
+	private Set<AccountAuthority> authorities = new HashSet<AccountAuthority>();
 	
 	@OneToMany(mappedBy = "userSentAccount")
 	@JsonManagedReference
@@ -88,4 +105,13 @@ public class UserAccount {
 	public void setChatRoomMessages(Set<ChatRoomMessage> chatRoomMessages) {
 		this.chatRoomMessages = chatRoomMessages;
 	}
+
+	public Set<AccountAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<AccountAuthority> authorities) {
+		this.authorities = authorities;
+	}
+	
 }

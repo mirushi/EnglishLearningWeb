@@ -17,7 +17,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 @Component
 public class JwtTokenProvider {
 
-	private final String JWT_SECRET = "committedpeople";
+	private final String JWT_SECRET = "committedpeople2112015";
 	
 	private final long JWT_EXPIRATION = 604800000L;
 	
