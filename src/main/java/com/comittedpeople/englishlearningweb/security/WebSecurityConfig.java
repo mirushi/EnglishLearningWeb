@@ -3,6 +3,7 @@ package com.comittedpeople.englishlearningweb.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -57,12 +58,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
-		.authorizeRequests()
-		.antMatchers("/api/v1/users").hasRole("USER")
+		.authorizeRequests().antMatchers("/api/v1/users").hasRole("USER")
 		.and()
 		.authorizeRequests().antMatchers("/api/v1/admin").hasRole("ADMIN")
-		.and().authorizeRequests()
-		.antMatchers("h2-console/**").permitAll()
+		.and()
+		.authorizeRequests().antMatchers(HttpMethod.POST, "/api/v1/grammar").hasRole("ADMIN")
+		.and()
+		.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/v1/grammar").hasRole("ADMIN")
+		.and()
+		.authorizeRequests().antMatchers("h2-console/**").permitAll()
 		.anyRequest().permitAll();
 		
 		//Disable Spring Security for H2.

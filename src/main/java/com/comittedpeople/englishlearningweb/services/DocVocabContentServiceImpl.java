@@ -32,4 +32,7 @@ public class DocVocabContentServiceImpl implements DocVocabContentService{
 				.map(mapper::docVocabContenttoContentDTO)
 				.collect(Collectors.toList());
 	}
+	
+	
+	
 }

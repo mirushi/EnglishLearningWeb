@@ -26,7 +26,7 @@ public class DocGrammarContentMapperTest {
 		docGrammarContent.setCategory(category);
 		
 		//Khi.
-		DocGrammarContentDTO docGrammarContentDTO = mapper.docGrammarContenttoContentDTO(docGrammarContent);
+		DocGrammarContentDTO docGrammarContentDTO = mapper.getDto(docGrammarContent);
 		
 		//Thì.
 		assertEquals(Long.valueOf(1L), docGrammarContentDTO.getId());

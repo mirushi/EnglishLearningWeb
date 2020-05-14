@@ -15,5 +15,10 @@ public interface DocGrammarContentMapper {
 	@Mapping(source = "id", target = "id")
 	@Mapping(source = "category.id", target = "categoryID")
 	@Mapping(source = "forms", target = "forms")
-	DocGrammarContentDTO docGrammarContenttoContentDTO (DocGrammarContent content);
+	DocGrammarContentDTO getDto (DocGrammarContent content);
+	
+	@Mapping(target  = "id", source = "id")
+	@Mapping(target = "category.id", source = "categoryID")
+	@Mapping(target = "forms", source = "forms")
+	DocGrammarContent getEntity (DocGrammarContentDTO contentDTO);
 }

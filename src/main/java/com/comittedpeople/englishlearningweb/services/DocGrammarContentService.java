@@ -7,4 +7,6 @@ import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentDTO;
 public interface DocGrammarContentService {
 	List<DocGrammarContentDTO> getDocGrammarContentDTOsByDocGrammarCategoryID (Long categoryID);
 	DocGrammarContentDTO getDocGrammarContentByID (Long grammarID);
+	DocGrammarContentDTO postDocGrammarContent(DocGrammarContentDTO contentDTO);
+	boolean deleteDocGrammarContent(Long contentID);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.comittedpeople.englishlearningweb.api.v1.mapper.DocGrammarContentMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentDTO;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarContentRepository;
 
 @Service
@@ -29,12 +30,34 @@ public class DocGrammarContentServiceImpl implements DocGrammarContentService{
 	public List<DocGrammarContentDTO> getDocGrammarContentDTOsByDocGrammarCategoryID(Long categoryID) {
 		return contentRepository.findByCategoryId(categoryID)
 				.stream()
-				.map(contentMapper::docGrammarContenttoContentDTO)
+				.map(contentMapper::getDto)
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	public DocGrammarContentDTO getDocGrammarContentByID(Long grammarID) {
-		return contentRepository.findById(grammarID).map(contentMapper::docGrammarContenttoContentDTO).get();
+		return contentRepository.findById(grammarID).map(contentMapper::getDto).get();
 	}
+	
+	@Override
+	public DocGrammarContentDTO postDocGrammarContent(DocGrammarContentDTO contentDTO) {
+		DocGrammarContent content = contentMapper.getEntity(contentDTO);
+		
+		content = contentRepository.save(content);
+		
+		return contentMapper.getDto(content);
+	}
+
+	@Override
+	public boolean deleteDocGrammarContent(Long contentID) {
+		// TODO Auto-generated method stub
+		try {
+			contentRepository.deleteById(contentID);
+		}catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+		return true;
+	}
+	
 }
