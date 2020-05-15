@@ -20,7 +20,7 @@ public class DocGrammarNoteMapperTest {
 		grammarNote.setContent("Grammar Note");
 		
 		//Khi
-		DocGrammarNoteDTO grammarNoteDTO = mapper.docGrammarNotetoGrammarNoteDTO(grammarNote);
+		DocGrammarNoteDTO grammarNoteDTO = mapper.getDto(grammarNote);
 
 		//Thì
 		assertEquals(1L, grammarNoteDTO.getId());

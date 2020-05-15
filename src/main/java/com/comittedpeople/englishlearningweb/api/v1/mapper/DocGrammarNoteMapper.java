@@ -13,5 +13,8 @@ public interface DocGrammarNoteMapper {
 	DocGrammarNoteMapper INSTANCE = Mappers.getMapper(DocGrammarNoteMapper.class);
 	
 	@Mapping(source = "id", target = "id")
-	DocGrammarNoteDTO docGrammarNotetoGrammarNoteDTO (DocGrammarNote grammarNote);
+	DocGrammarNoteDTO getDto (DocGrammarNote grammarNote);
+	
+	@Mapping(source = "id", target = "id")
+	DocGrammarNote getEntity (DocGrammarNoteDTO grammarNoteDTO);
 }

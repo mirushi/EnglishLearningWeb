@@ -34,7 +34,7 @@ public class DocGrammarNoteServiceTest {
 	public void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
 		System.out.println("Before called");
-		grammarNoteService = new DocGrammarNoteServiceImpl(DocGrammarNoteMapper.INSTANCE, grammarNoteRepository);
+		//grammarNoteService = new DocGrammarNoteServiceImpl(DocGrammarNoteMapper.INSTANCE, grammarNoteRepository);
 	}
 	
 	@Test

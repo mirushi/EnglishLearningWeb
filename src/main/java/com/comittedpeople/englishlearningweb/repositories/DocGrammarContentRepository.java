@@ -9,5 +9,5 @@ import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 public interface DocGrammarContentRepository extends JpaRepository<DocGrammarContent, Long>{
 	
 	List<DocGrammarContent> findByCategoryId (Long categoryId);
-
+	
 }
