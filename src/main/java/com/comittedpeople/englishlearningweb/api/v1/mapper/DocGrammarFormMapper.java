@@ -13,5 +13,8 @@ public interface DocGrammarFormMapper {
 	DocGrammarFormMapper INSTANCE = Mappers.getMapper(DocGrammarFormMapper.class);
 	
 	@Mapping(source = "id", target = "id")
-	DocGrammarFormDTO docGrammarFormtoFormDTO (DocGrammarForm grammarForm);
+	DocGrammarFormDTO getDto (DocGrammarForm grammarForm);
+	
+	@Mapping(source = "id", target = "id")
+	DocGrammarForm getEntity (DocGrammarFormDTO grammarFormDTO);
 }

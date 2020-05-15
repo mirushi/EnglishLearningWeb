@@ -33,8 +33,8 @@ public class DocGrammarContentServiceTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		System.out.println("Before called !");
-		grammarContentService = new DocGrammarContentServiceImpl(DocGrammarContentMapper.INSTANCE,
-				grammarContentRepository);
+//		grammarContentService = new DocGrammarContentServiceImpl(DocGrammarContentMapper.INSTANCE,
+//				grammarContentRepository);
 	}
 
 	@Test

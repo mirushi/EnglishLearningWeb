@@ -40,7 +40,7 @@ public class DocGrammarFormMapperTest {
 		
 		
 		//Khi.
-		DocGrammarFormDTO formDTO = mapper.docGrammarFormtoFormDTO(form);
+		DocGrammarFormDTO formDTO = mapper.getDto(form);
 		
 		//Thì.
 		assertEquals(Long.valueOf(1L), formDTO.getId());

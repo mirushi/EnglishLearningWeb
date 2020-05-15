@@ -30,7 +30,7 @@ public class DocGrammarFormServiceImpl implements DocGrammarFormService{
 		// TODO Auto-generated method stub
 		return formRepository.findByDocGrammarContentId(grammarContentID)
 				.stream()
-				.map(formMapper::docGrammarFormtoFormDTO)
+				.map(formMapper::getDto)
 				.collect(Collectors.toList());
 	}
 	

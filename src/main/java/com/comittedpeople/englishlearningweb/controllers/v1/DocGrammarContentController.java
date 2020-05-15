@@ -1,12 +1,19 @@
 package com.comittedpeople.englishlearningweb.controllers.v1;
 
+import static org.hamcrest.CoreMatchers.sameInstance;
+
+import java.lang.reflect.Field;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentDTO;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 import com.comittedpeople.englishlearningweb.services.DocGrammarContentService;
 
 @Controller
@@ -44,6 +52,12 @@ public class DocGrammarContentController {
 		}
 	}
 	
+	@PatchMapping(value = "{grammarID}")
+	public ResponseEntity<DocGrammarContentDTO> patchGrammarContent(@PathVariable Long grammarID, @RequestBody DocGrammarContentDTO grammarContent) {
+		DocGrammarContentDTO docGrammarContent = docGrammarContentService.patchDocGrammarContent(grammarID, grammarContent);
+		return new ResponseEntity<DocGrammarContentDTO>(docGrammarContent, HttpStatus.OK);
+	}
+		
 	@PostMapping
 	public ResponseEntity<DocGrammarContentDTO> postGrammarContent(@Valid @RequestBody DocGrammarContentDTO contentDTO){
 		
