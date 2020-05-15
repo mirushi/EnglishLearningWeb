@@ -1,4 +1,4 @@
-package com.comittedpeople.englishlearningweb.services;
+package com.comittedpeople.englishlearningweb.services;	
 
 import java.util.List;
 
@@ -8,6 +8,12 @@ public interface DocGrammarFormService {
 
 	List<DocGrammarFormDTO> getDocGrammarFormDTOsByGrammarContentID (Long grammarContentID);
 	
+	DocGrammarFormDTO getDocGrammarFormDTOByGrammarFormID (Long grammarFormID);
+	
 	DocGrammarFormDTO postDocGrammarFormDTOByGrammarContentID (Long grammarContentID, DocGrammarFormDTO formDTO);
+	
+	DocGrammarFormDTO patchDocGrammarForm (Long formID, DocGrammarFormDTO formDTO);
+	
+	boolean deleteDocGrammarFormByGrammarIDAndFormID(Long formID);
 	
 }

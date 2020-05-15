@@ -46,9 +46,13 @@ public class DocGrammarFormServiceImpl implements DocGrammarFormService{
 	@Override
 	public DocGrammarFormDTO postDocGrammarFormDTOByGrammarContentID(Long grammarContentID, DocGrammarFormDTO formDTO) {
 		// TODO Auto-generated method stub
-		
-		DocGrammarContent content = contentRepository.findById(grammarContentID).get();
-		
+		DocGrammarContent content;
+		try {
+			content = contentRepository.findById(grammarContentID).get();
+		}catch (Exception e) {
+			// TODO: handle exception
+			content = null;
+		}
 		if (content == null)
 			return null;
 		
@@ -63,5 +67,64 @@ public class DocGrammarFormServiceImpl implements DocGrammarFormService{
 		
 		return formMapper.getDto(form);
 	}
+
+	@Override
+	public boolean deleteDocGrammarFormByGrammarIDAndFormID(Long formID) {
+		try {
+			//Đầu tiên ta cần tìm ra cái form và cái content.
+			
+			DocGrammarForm form = formRepository.findById(formID).get();
+			DocGrammarContent content = form.getDocGrammarContent();
+			
+			//Sau đó, xoá form ra khỏi content. Sau đó mới xoá form thực sự.
+			content.getForms().remove(form);
+			formRepository.delete(form);
+			
+			//Sau khi mọi thứ hoàn thành thì nhớ lưu lại.
+			contentRepository.save(content);
+		}catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+		return true;
+	}
 	
+	@Override
+	public DocGrammarFormDTO getDocGrammarFormDTOByGrammarFormID (Long grammarFormID) {
+		DocGrammarForm form;
+		try {
+			form = formRepository.findById(grammarFormID).get();
+		}catch (Exception e) {
+			// TODO: handle exception
+			form = null;
+		}
+		if (form == null)
+			return null;
+		return formMapper.getDto(form);
+	}
+
+	@Override
+	public DocGrammarFormDTO patchDocGrammarForm(Long formID, DocGrammarFormDTO formDTO) {
+		// TODO Auto-generated method stub
+		return formRepository.findById(formID).map(form -> {
+			if (formDTO.getHow() != null) {
+				form.setHow(formDTO.getHow());
+			}
+			if (formDTO.getTitle() != null) {
+				form.setTitle(formDTO.getTitle());
+			}
+			if (formDTO.getUsage() != null) {
+				form.setUsage(formDTO.getUsage());
+			}
+			if (formDTO.getUseCase() != null) {
+				form.setUseCase(formDTO.getUseCase());
+			}
+			
+			DocGrammarFormDTO returnDTO = formMapper.getDto(formRepository.save(form));
+			
+			return returnDTO;
+			
+		}).orElseThrow(RuntimeException::new);
+	}
+
 }
