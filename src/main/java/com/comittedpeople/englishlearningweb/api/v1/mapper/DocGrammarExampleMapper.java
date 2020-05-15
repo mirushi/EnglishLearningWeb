@@ -13,5 +13,7 @@ public interface DocGrammarExampleMapper {
 	DocGrammarExampleMapper INSTANCE = Mappers.getMapper(DocGrammarExampleMapper.class);
 	
 	@Mapping(source = "id", target = "id")
-	DocGrammarExampleDTO docGrammarExampletoExampleDTO (DocGrammarExample grammarExample);
+	DocGrammarExampleDTO getDto (DocGrammarExample grammarExample);
+	@Mapping(source = "id", target = "id")
+	DocGrammarExample getEntity(DocGrammarExampleDTO grammarExampleDTO);
 }

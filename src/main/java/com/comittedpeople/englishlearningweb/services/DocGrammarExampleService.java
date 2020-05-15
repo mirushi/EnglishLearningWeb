@@ -8,4 +8,6 @@ public interface DocGrammarExampleService {
 	
 	List<DocGrammarExampleDTO> getDocGrammarExampleDTOsByFormID (Long formID);
 	
+	List<DocGrammarExampleDTO> putDocGrammarExampleDTOsByFormID (Long formID, List<DocGrammarExampleDTO> exampleDTOs);
+	
 }

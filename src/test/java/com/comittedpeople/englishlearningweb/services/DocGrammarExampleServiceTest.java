@@ -30,7 +30,7 @@ public class DocGrammarExampleServiceTest {
 	public void setUp () throws Exception {
 		MockitoAnnotations.initMocks(this);
 		System.out.println("Before called !");
-		grammarExampleService = new DocGrammarExampleServiceImpl(DocGrammarExampleMapper.INSTANCE, grammarExampleRepository);
+		//grammarExampleService = new DocGrammarExampleServiceImpl(DocGrammarExampleMapper.INSTANCE, grammarExampleRepository);
 	}
 	
 	@Test

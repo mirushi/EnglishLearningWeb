@@ -22,7 +22,7 @@ public class DocGrammarExampleMapperTest {
 		grammarExample.setImageURL("abc.net");
 		
 		//Khi
-		DocGrammarExampleDTO grammarExampleDTO = mapper.docGrammarExampletoExampleDTO(grammarExample);
+		DocGrammarExampleDTO grammarExampleDTO = mapper.getDto(grammarExample);
 		
 		//Thì.
 		assertEquals(1L, grammarExampleDTO.getId());
