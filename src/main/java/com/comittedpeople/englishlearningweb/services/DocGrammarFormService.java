@@ -8,4 +8,6 @@ public interface DocGrammarFormService {
 
 	List<DocGrammarFormDTO> getDocGrammarFormDTOsByGrammarContentID (Long grammarContentID);
 	
+	DocGrammarFormDTO postDocGrammarFormDTOByGrammarContentID (Long grammarContentID, DocGrammarFormDTO formDTO);
+	
 }

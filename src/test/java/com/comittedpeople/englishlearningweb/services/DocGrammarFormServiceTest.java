@@ -33,7 +33,7 @@ public class DocGrammarFormServiceTest {
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		System.out.println("Before called !");
-		formService = new DocGrammarFormServiceImpl(DocGrammarFormMapper.INSTANCE, formRepository);
+//		formService = new DocGrammarFormServiceImpl(DocGrammarFormMapper.INSTANCE, formRepository);
 	}
 
 	@Test

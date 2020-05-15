@@ -45,7 +45,14 @@ public class DocGrammarContentServiceImpl implements DocGrammarContentService{
 
 	@Override
 	public DocGrammarContentDTO getDocGrammarContentByID(Long grammarID) {
-		return contentRepository.findById(grammarID).map(contentMapper::getDto).get();
+		DocGrammarContentDTO returnDTO;
+		try{
+			returnDTO = contentRepository.findById(grammarID).map(contentMapper::getDto).get();
+		}catch (Exception e) {
+			// TODO: handle exception
+			returnDTO = null;
+		}
+		return returnDTO;
 	}
 	
 	@Override
