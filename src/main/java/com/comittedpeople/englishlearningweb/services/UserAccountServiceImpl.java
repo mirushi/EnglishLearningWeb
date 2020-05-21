@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.comittedpeople.englishlearningweb.api.v1.mapper.UserAccountMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
+import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
 import com.comittedpeople.englishlearningweb.domain.AccountAuthority;
 import com.comittedpeople.englishlearningweb.domain.UserAccount;
 import com.comittedpeople.englishlearningweb.payload.RegisterRequestDTO;
@@ -101,6 +102,19 @@ public class UserAccountServiceImpl implements UserAccountService {
 		
 		return result;
 		
+	}
+	
+	@Override
+	public UserAccountDTO putUserReminder(Long userID, UserReminderDTO reminder) {
+		UserAccount account;
+		try {
+			account = userAccountRepository.findById(userID).get();
+		}catch (Exception e) {
+			return null;
+		}
+		
+		account.setReminder(reminder.getDays());
+		return userMapper.getDto(userAccountRepository.save(account));
 	}
 
 	@Override

@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
+import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
 import com.comittedpeople.englishlearningweb.services.UserAccountService;
 
 @Controller
@@ -31,6 +33,27 @@ public class UserAccountController {
 		else 
 			return new ResponseEntity<UserAccountDTO>(returnDTO, HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("{userID}/reminders")
+	public ResponseEntity<UserReminderDTO> getUserReminders (@PathVariable Long userID){
+		UserAccountDTO userDTO = userAccountService.getUserByID(userID);
+		if (userDTO == null)
+			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.NOT_FOUND);
+		else 
+			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(userDTO.getReminder()), HttpStatus.OK);
+	}
+	
+	@PutMapping("{userID}/reminders")
+	public ResponseEntity<UserReminderDTO> putUserReminders (@PathVariable Long userID, @Valid @RequestBody UserReminderDTO reminderDays){
+		
+		System.out.println("Reminder days : " + reminderDays.toString());
+		
+		UserAccountDTO userDTO = userAccountService.putUserReminder(userID, reminderDays);
+		if (userDTO == null)
+			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.NOT_FOUND);
+		else 
+			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(userDTO.getReminder()), HttpStatus.OK);
 	}
 	
 	@PatchMapping("{userID}")

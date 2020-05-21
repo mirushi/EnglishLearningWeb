@@ -135,6 +135,7 @@ public class Bootstrap implements CommandLineRunner {
 		adminAccount.setEnabled(true);
 		adminAccount.setEmail("committedpeople@gmail.com");
 		adminAccount.setDisplayname("Committed");
+		adminAccount.setReminder(9);
 		
 		adminAccount.getAuthorities().addAll(Arrays.asList(admin,user));
 		
@@ -147,6 +148,7 @@ public class Bootstrap implements CommandLineRunner {
 		userAccount.setEnabled(true);
 		userAccount.setEmail("committedpeople@gmail.com");
 		userAccount.setDisplayname("Committed");
+		userAccount.setReminder(10);
 		
 		userAccount.getAuthorities().addAll(Arrays.asList(user));
 		
