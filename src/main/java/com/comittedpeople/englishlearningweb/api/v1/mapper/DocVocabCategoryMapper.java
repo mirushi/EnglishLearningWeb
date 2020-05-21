@@ -14,5 +14,8 @@ public interface DocVocabCategoryMapper {
 	DocVocabCategoryMapper INSTANCE = Mappers.getMapper(DocVocabCategoryMapper.class);
 	
 	@Mapping(source = "id", target = "id")
-	DocVocabCategoryDTO docVocabCategorytoCategoryDTO(DocVocabCategory category);
+	DocVocabCategoryDTO getDto(DocVocabCategory category);
+	
+	@Mapping(source = "id", target = "id")
+	DocVocabCategory getEntity(DocVocabCategoryDTO categoryDTO);
 }

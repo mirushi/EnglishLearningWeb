@@ -23,7 +23,7 @@ public class DocVocabCategoryMapperTest {
 		docVocabCategory.setDescription("General Category Description");
 		
 		//Khi
-		DocVocabCategoryDTO docVocabCategoryDTO = docVocabCategoryMapper.docVocabCategorytoCategoryDTO(docVocabCategory);
+		DocVocabCategoryDTO docVocabCategoryDTO = docVocabCategoryMapper.getDto(docVocabCategory);
 		
 		//Thì
 		assertEquals(Long.valueOf(1L), docVocabCategoryDTO.getId());

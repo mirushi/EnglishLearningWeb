@@ -2,11 +2,15 @@ package com.comittedpeople.englishlearningweb.controllers.v1;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -39,4 +43,17 @@ public class DocVocabCategoryController {
 	public ResponseEntity<List<DocVocabLessonDTO>> getAllDocVocabLesson(@PathVariable Long categoryID){
 		return new ResponseEntity<List<DocVocabLessonDTO>> (docVocabLessonService.getAllVocabLessonsDTOByCategoryID(categoryID), HttpStatus.OK);
 	}
+	
+	@PostMapping
+	public ResponseEntity<DocVocabCategoryDTO> postDocVocabCategory(@Valid @RequestBody DocVocabCategoryDTO docVocabCategory){
+		
+		docVocabCategory = docVocabCategoryService.postVocabCategory(docVocabCategory);
+		
+		if (docVocabCategory == null)
+			return new ResponseEntity<DocVocabCategoryDTO>(docVocabCategory, HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<DocVocabCategoryDTO>(docVocabCategory, HttpStatus.OK);
+		
+	}
+	
 }

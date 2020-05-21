@@ -11,4 +11,6 @@ import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 public interface DocVocabCategoryService {
 
 	List<DocVocabCategoryDTO> getAllVocabCategoryDTOs();
+	
+	DocVocabCategoryDTO postVocabCategory(DocVocabCategoryDTO dto);
 }
