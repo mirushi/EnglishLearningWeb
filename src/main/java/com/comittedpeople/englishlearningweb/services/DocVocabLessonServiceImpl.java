@@ -10,6 +10,7 @@ import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
+import com.comittedpeople.englishlearningweb.repositories.DocVocabCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
 
 @Service
@@ -19,10 +20,16 @@ public class DocVocabLessonServiceImpl implements DocVocabLessonService{
 	private DocVocabLessonRepository repository;
 	
 	@Autowired
+	private DocVocabCategoryRepository categoryRepository;
+	
+	@Autowired
 	private DocVocabLessonMapper mapper;
 	
-	public DocVocabLessonServiceImpl(DocVocabLessonMapper mapper, DocVocabLessonRepository repository) {
+	public DocVocabLessonServiceImpl(DocVocabLessonRepository repository, DocVocabCategoryRepository categoryRepository,
+			DocVocabLessonMapper mapper) {
+		super();
 		this.repository = repository;
+		this.categoryRepository = categoryRepository;
 		this.mapper = mapper;
 	}
 
@@ -30,7 +37,26 @@ public class DocVocabLessonServiceImpl implements DocVocabLessonService{
 	public List<DocVocabLessonDTO> getAllVocabLessonsDTOByCategoryID(Long categoryID) {
 		return repository.findByCategoryId(categoryID)
 				.stream()
-				.map(mapper::docVocabLessonToLessonDTO)
+				.map(mapper::getDto)
 				.collect(Collectors.toList());	
+	}
+
+	@Override
+	public DocVocabLessonDTO postVocabLesson(Long categoryID, DocVocabLessonDTO lessonDTO) {
+		DocVocabCategory category;
+		try {
+			category = categoryRepository.findById(categoryID).get();
+		} catch (Exception e) {
+			return null;
+		}
+		
+		DocVocabLesson vocabLesson = mapper.getEntity(lessonDTO);
+		
+		//Cài thêm một số thông tin mặc định khi mapper sẽ không có.
+		vocabLesson.setId(null);
+		vocabLesson.setCategory(category);
+		vocabLesson.setVocabs(null);
+		
+		return mapper.getDto(repository.save(vocabLesson));
 	}
 }

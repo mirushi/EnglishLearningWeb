@@ -21,7 +21,7 @@ public class DocVocabLessonMapperTest {
 		docVocabLesson.setImageURL(IMAGE_URL);
 		docVocabLesson.setTitle(TITLE);
 		
-		DocVocabLessonDTO docVocabLessonDTO = docVocabLessonMapper.docVocabLessonToLessonDTO(docVocabLesson);
+		DocVocabLessonDTO docVocabLessonDTO = docVocabLessonMapper.getDto(docVocabLesson);
 		
 		assertEquals(Long.valueOf(1L), docVocabLessonDTO.getId());
 		assertEquals(TITLE, docVocabLessonDTO.getTitle());

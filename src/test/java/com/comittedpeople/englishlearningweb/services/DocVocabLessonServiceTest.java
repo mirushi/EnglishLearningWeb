@@ -31,7 +31,7 @@ public class DocVocabLessonServiceTest {
 	public void setUp () throws Exception{
 		MockitoAnnotations.initMocks(this);
 		System.out.println("Before called");
-		docVocabLessonService = new DocVocabLessonServiceImpl(DocVocabLessonMapper.INSTANCE, docVocabLessonRepository);
+		//docVocabLessonService = new DocVocabLessonServiceImpl(DocVocabLessonMapper.INSTANCE, docVocabLessonRepository);
 	}
 	
 	@Test

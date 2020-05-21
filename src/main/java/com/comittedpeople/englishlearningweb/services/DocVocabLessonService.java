@@ -10,6 +10,7 @@ import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 
 @Service
 public interface DocVocabLessonService {
-
 	List<DocVocabLessonDTO> getAllVocabLessonsDTOByCategoryID(Long categoryID);
+	
+	DocVocabLessonDTO postVocabLesson (Long categoryID, DocVocabLessonDTO lessonDTO);
 }

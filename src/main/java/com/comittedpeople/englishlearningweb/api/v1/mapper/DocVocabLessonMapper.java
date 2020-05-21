@@ -14,6 +14,9 @@ public interface DocVocabLessonMapper {
 	DocVocabLessonMapper INSTANCE = Mappers.getMapper(DocVocabLessonMapper.class);
 	
 	@Mapping(source = "id", target = "id")
-	DocVocabLessonDTO docVocabLessonToLessonDTO(DocVocabLesson lesson);
+	DocVocabLessonDTO getDto(DocVocabLesson lesson);
+	
+	@Mapping(source = "id", target = "id")
+	DocVocabLesson getEntity(DocVocabLessonDTO lessonDTO);
 	
 }
