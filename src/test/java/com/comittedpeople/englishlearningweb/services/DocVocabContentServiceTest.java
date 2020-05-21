@@ -31,7 +31,7 @@ public class DocVocabContentServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		docVocabContentService = new DocVocabContentServiceImpl(DocVocabContentMapper.INSTANCE, docVocabContentRepository);
+		//docVocabContentService = new DocVocabContentServiceImpl(DocVocabContentMapper.INSTANCE, docVocabContentRepository);
 	}
 	
 	@Test

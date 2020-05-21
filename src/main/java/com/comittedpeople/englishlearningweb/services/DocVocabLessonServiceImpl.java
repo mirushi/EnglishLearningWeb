@@ -1,6 +1,7 @@
 package com.comittedpeople.englishlearningweb.services;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.comittedpeople.englishlearningweb.api.v1.mapper.DocVocabLessonMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
 import com.comittedpeople.englishlearningweb.domain.DocVocabCategory;
+import com.comittedpeople.englishlearningweb.domain.DocVocabContent;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocVocabLessonRepository;
@@ -55,7 +57,7 @@ public class DocVocabLessonServiceImpl implements DocVocabLessonService{
 		//Cài thêm một số thông tin mặc định khi mapper sẽ không có.
 		vocabLesson.setId(null);
 		vocabLesson.setCategory(category);
-		vocabLesson.setVocabs(null);
+		vocabLesson.setVocabs((Set<DocVocabContent>)null);
 		
 		return mapper.getDto(repository.save(vocabLesson));
 	}

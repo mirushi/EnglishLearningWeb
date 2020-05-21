@@ -27,7 +27,7 @@ public class DocVocabContentMapperTest {
 		docVocabContent.setSpelling(PRONOUNCE);
 		docVocabContent.setSpellingAudioURL(SPELLING_URL);
 		
-		DocVocabContentDTO docVocabContentDTO = mapper.docVocabContenttoContentDTO(docVocabContent);
+		DocVocabContentDTO docVocabContentDTO = mapper.getDto(docVocabContent);
 		
 		assertEquals(docVocabContentDTO.getContent(), CONTENT);
 		assertEquals(docVocabContentDTO.getDescription(), DESCRIPTION);

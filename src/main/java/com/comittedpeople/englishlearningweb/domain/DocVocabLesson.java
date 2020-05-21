@@ -72,6 +72,15 @@ public class DocVocabLesson {
 	public void setVocabs(Set<DocVocabContent> vocabs) {
 		this.vocabs = vocabs;
 	}
+	
+	public void setVocabs(List<DocVocabContent> vocabs) {
+		this.vocabs.clear();
+		if (vocabs == null)
+			return;
+		for (DocVocabContent vocab : vocabs) {
+			this.vocabs.add(vocab);
+		}
+	}
 
 	public DocVocabCategory getCategory() {
 		return category;

@@ -13,5 +13,8 @@ public interface DocVocabContentMapper {
 	DocVocabContentMapper INSTANCE = Mappers.getMapper(DocVocabContentMapper.class);
 	
 	@Mapping (source = "id", target = "id")
-	DocVocabContentDTO docVocabContenttoContentDTO (DocVocabContent docVocabContent);
+	DocVocabContentDTO getDto (DocVocabContent docVocabContent);
+	
+	@Mapping (source = "id", target = "id")
+	DocVocabContent getEntity (DocVocabContentDTO docVocabContentDTO);
 }

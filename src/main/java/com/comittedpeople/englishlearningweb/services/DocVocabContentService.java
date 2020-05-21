@@ -10,5 +10,9 @@ import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabContentDTO;
 public interface DocVocabContentService {
 	
 	List<DocVocabContentDTO> getAllVocabContentByLessonId(Long lessonID);
+	
+	List<DocVocabContentDTO> putVocabContentByLessonID(Long lessonID, List<DocVocabContentDTO> contentDTOs);
+	
+	DocVocabContentDTO postVocabContentByLessonID(Long lessonID, DocVocabContentDTO contentDTO);
 
 }
