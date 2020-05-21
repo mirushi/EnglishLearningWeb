@@ -2,6 +2,7 @@ package com.comittedpeople.englishlearningweb.api.v1.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.DocVocabLessonDTO;
@@ -14,4 +15,5 @@ public interface DocVocabLessonMapper {
 	
 	@Mapping(source = "id", target = "id")
 	DocVocabLessonDTO docVocabLessonToLessonDTO(DocVocabLesson lesson);
+	
 }

@@ -32,10 +32,11 @@ public class UserAccount {
 	private String email;
 	
 	private String password;
-	
-	
+
 	private Boolean enabled;
 	
+	private Integer reminder;
+
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
@@ -112,6 +113,14 @@ public class UserAccount {
 
 	public void setAuthorities(Set<AccountAuthority> authorities) {
 		this.authorities = authorities;
+	}
+	
+	public Integer getReminder() {
+		return reminder;
+	}
+
+	public void setReminder(Integer reminder) {
+		this.reminder = reminder;
 	}
 	
 }

@@ -17,13 +17,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.comittedpeople.englishlearningweb.jwt.JwtAuthenticationFilter;
-import com.comittedpeople.englishlearningweb.services.UserDetailsCustomService;
+import com.comittedpeople.englishlearningweb.services.UserDetailsCustomServiceImpl;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	UserDetailsCustomService userDetailsCustomService;
+	UserDetailsCustomServiceImpl userDetailsCustomServiceImpl;
 	
 	@Bean
 	public JwtAuthenticationFilter jwtAuthenticationFilter () {
@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure (AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsCustomService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsCustomServiceImpl).passwordEncoder(passwordEncoder());
 	}
 	
 	@Override

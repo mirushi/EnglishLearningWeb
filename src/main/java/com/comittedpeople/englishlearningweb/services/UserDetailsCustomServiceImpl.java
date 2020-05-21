@@ -13,7 +13,7 @@ import com.comittedpeople.englishlearningweb.domain.UserDetailsCustom;
 import com.comittedpeople.englishlearningweb.repositories.UserAccountRepository;
 
 @Service
-public class UserDetailsCustomService implements UserDetailsService {
+public class UserDetailsCustomServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UserAccountRepository userRepository;

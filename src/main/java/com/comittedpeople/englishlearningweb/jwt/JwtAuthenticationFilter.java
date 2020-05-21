@@ -16,8 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.comittedpeople.englishlearningweb.services.UserDetailsCustomService;
+import com.comittedpeople.englishlearningweb.services.UserDetailsCustomServiceImpl;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
@@ -25,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 	private JwtTokenProvider tokenProvider;
 	
 	@Autowired
-	private UserDetailsCustomService userDetailsCustomService;
+	private UserDetailsCustomServiceImpl userDetailsCustomService;
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, 
