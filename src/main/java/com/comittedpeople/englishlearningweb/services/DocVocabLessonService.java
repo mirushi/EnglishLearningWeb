@@ -13,4 +13,6 @@ public interface DocVocabLessonService {
 	List<DocVocabLessonDTO> getAllVocabLessonsDTOByCategoryID(Long categoryID);
 	
 	DocVocabLessonDTO postVocabLesson (Long categoryID, DocVocabLessonDTO lessonDTO);
+	
+	DocVocabLessonDTO putVocabLesson (Long lessonID, DocVocabLessonDTO lessonDTO);
 }

@@ -59,4 +59,21 @@ public class DocVocabLessonServiceImpl implements DocVocabLessonService{
 		
 		return mapper.getDto(repository.save(vocabLesson));
 	}
+
+	@Override
+	public DocVocabLessonDTO putVocabLesson(Long lessonID, DocVocabLessonDTO lessonDTO) {
+		// TODO Auto-generated method stub
+		DocVocabLesson fromDBLesson;
+		try {
+			fromDBLesson = repository.findById(lessonID).get();
+		}catch (Exception e) {
+			return null;
+		}
+		fromDBLesson.setTitle(lessonDTO.getTitle());
+		fromDBLesson.setImageURL(lessonDTO.getImageURL());
+		
+		fromDBLesson = repository.save(fromDBLesson);
+		
+		return mapper.getDto(fromDBLesson);
+	}
 }
