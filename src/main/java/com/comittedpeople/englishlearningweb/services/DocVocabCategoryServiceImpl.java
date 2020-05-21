@@ -47,4 +47,33 @@ public class DocVocabCategoryServiceImpl implements DocVocabCategoryService {
 		
 		return mapper.getDto(vocabCategory);
 	}
+	
+	@Override
+	public DocVocabCategoryDTO putVocabCategory(Long categoryID, DocVocabCategoryDTO dto) {
+		
+		DocVocabCategory fromDBCategory;
+		try {
+			fromDBCategory = repository.findById(categoryID).get();
+		}catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+		
+		fromDBCategory.setTitle(dto.getTitle());
+
+		fromDBCategory = repository.save(fromDBCategory);
+		
+		return mapper.getDto(fromDBCategory);
+	}
+
+	@Override
+	public Boolean deleteVocabCategory(Long categoryID) {
+		// TODO Auto-generated method stub
+		try {
+			repository.deleteById(categoryID);
+		}catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }

@@ -13,4 +13,8 @@ public interface DocVocabCategoryService {
 	List<DocVocabCategoryDTO> getAllVocabCategoryDTOs();
 	
 	DocVocabCategoryDTO postVocabCategory(DocVocabCategoryDTO dto);
+	
+	DocVocabCategoryDTO putVocabCategory(Long categoryID, DocVocabCategoryDTO dto);
+	
+	Boolean deleteVocabCategory(Long categoryID);
 }
