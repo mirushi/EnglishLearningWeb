@@ -15,4 +15,6 @@ public interface DocVocabLessonService {
 	DocVocabLessonDTO postVocabLesson (Long categoryID, DocVocabLessonDTO lessonDTO);
 	
 	DocVocabLessonDTO putVocabLesson (Long lessonID, DocVocabLessonDTO lessonDTO);
+	
+	Boolean deleteVocabLesson (Long lessonID);
 }

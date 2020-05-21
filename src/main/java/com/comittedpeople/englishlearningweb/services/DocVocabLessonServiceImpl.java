@@ -76,4 +76,15 @@ public class DocVocabLessonServiceImpl implements DocVocabLessonService{
 		
 		return mapper.getDto(fromDBLesson);
 	}
+
+	@Override
+	public Boolean deleteVocabLesson(Long lessonID) {
+		
+		try {
+			repository.deleteById(lessonID);
+		}catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }
