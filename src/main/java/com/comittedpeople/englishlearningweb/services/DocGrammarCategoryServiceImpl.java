@@ -42,4 +42,21 @@ public class DocGrammarCategoryServiceImpl implements DocGrammarCategoryService{
 		
 		return categoryMapper.getDto(category);
 	}
+
+	@Override
+	public DocGrammarCategoryDTO patchDocGrammarCategory(Long categoryID, DocGrammarCategoryDTO categoryDTO) {
+		return categoryRepository.findById(categoryID).map(category -> {
+			if (categoryDTO.getDescription() != null) {
+				category.setDescription(categoryDTO.getDescription());
+			}
+			if (categoryDTO.getTitle() != null) {
+				category.setTitle(categoryDTO.getTitle());
+			}
+			
+			DocGrammarCategoryDTO returnDTO = categoryMapper.getDto(categoryRepository.save(category));
+			
+			return returnDTO;
+			
+		}).orElseThrow(RuntimeException::new);
+	}
 }

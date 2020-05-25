@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,6 +43,15 @@ public class DocGrammarCategoryController {
 		DocGrammarCategoryDTO returnDTO = docGrammarCategoryService.postDocGrammarCategory(categoryDTO);
 		if (returnDTO == null)
 			return new ResponseEntity<DocGrammarCategoryDTO>(returnDTO, HttpStatus.FORBIDDEN);
+		else
+			return new ResponseEntity<DocGrammarCategoryDTO>(returnDTO, HttpStatus.OK);
+	}
+	
+	@PatchMapping("{id}")
+	public ResponseEntity<DocGrammarCategoryDTO> putGrammarCategory(@PathVariable Long id, @Valid @RequestBody DocGrammarCategoryDTO categoryDTO){
+		DocGrammarCategoryDTO returnDTO = docGrammarCategoryService.patchDocGrammarCategory(id, categoryDTO);
+		if (returnDTO == null)
+			return new ResponseEntity<DocGrammarCategoryDTO>(returnDTO, HttpStatus.NOT_FOUND);
 		else
 			return new ResponseEntity<DocGrammarCategoryDTO>(returnDTO, HttpStatus.OK);
 	}
