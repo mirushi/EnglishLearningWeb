@@ -8,4 +8,5 @@ public interface DocGrammarCategoryService {
 
 	List<DocGrammarCategoryDTO> getDocGrammarCategoryServiceDTOs ();
 	
+	DocGrammarCategoryDTO postDocGrammarCategory(DocGrammarCategoryDTO categoryDTO);
 }

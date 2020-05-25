@@ -14,5 +14,9 @@ public interface DocGrammarCategoryMapper {
 	
 	@Mapping(source = "id", target = "id")
 	@Mapping(source = "grammars", target = "docGrammarContentSummary")
-	DocGrammarCategoryDTO docGrammarCategorytoCategoryDTO (DocGrammarCategory category);
+	DocGrammarCategoryDTO getDto (DocGrammarCategory category);
+	
+	@Mapping(source = "id", target = "id")
+	@Mapping(source = "docGrammarContentSummary", target = "grammars")
+	DocGrammarCategory getEntity (DocGrammarCategoryDTO categoryDTO);
 }

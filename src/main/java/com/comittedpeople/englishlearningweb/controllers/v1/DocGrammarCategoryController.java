@@ -2,11 +2,15 @@ package com.comittedpeople.englishlearningweb.controllers.v1;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarCategoryDTO;
@@ -32,6 +36,15 @@ public class DocGrammarCategoryController {
 		return new ResponseEntity<List<DocGrammarCategoryDTO>>(docGrammarCategoryService.getDocGrammarCategoryServiceDTOs(), HttpStatus.OK);
 	}
 
+	@PostMapping
+	public ResponseEntity<DocGrammarCategoryDTO> postGrammarCategory(@Valid @RequestBody DocGrammarCategoryDTO categoryDTO){
+		DocGrammarCategoryDTO returnDTO = docGrammarCategoryService.postDocGrammarCategory(categoryDTO);
+		if (returnDTO == null)
+			return new ResponseEntity<DocGrammarCategoryDTO>(returnDTO, HttpStatus.FORBIDDEN);
+		else
+			return new ResponseEntity<DocGrammarCategoryDTO>(returnDTO, HttpStatus.OK);
+	}
+	
 	//Tạm thời chưa cần phần này.
 //	
 //	@GetMapping(value = "{categoryID}")

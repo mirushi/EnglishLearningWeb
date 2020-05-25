@@ -30,7 +30,7 @@ public class DocGrammarCategoryMapperTest {
 				"This Category Title", "This Category Description", Arrays.asList(content));
 		
 		//Khi
-		DocGrammarCategoryDTO docGrammarCategoryDTO = categoryMapper.docGrammarCategorytoCategoryDTO(docGrammarCategory);
+		DocGrammarCategoryDTO docGrammarCategoryDTO = categoryMapper.getDto(docGrammarCategory);
 		
 		//Thì
 		assertEquals(Long.valueOf(1L), docGrammarCategoryDTO.getId());

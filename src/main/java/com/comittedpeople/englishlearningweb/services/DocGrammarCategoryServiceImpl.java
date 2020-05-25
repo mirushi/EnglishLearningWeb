@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.comittedpeople.englishlearningweb.api.v1.mapper.DocGrammarCategoryMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarCategoryDTO;
+import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarCategoryRepository;
 
 @Service
@@ -29,7 +30,16 @@ public class DocGrammarCategoryServiceImpl implements DocGrammarCategoryService{
 	public List<DocGrammarCategoryDTO> getDocGrammarCategoryServiceDTOs() {
 		return categoryRepository.findAll()
 				.stream()
-				.map(categoryMapper::docGrammarCategorytoCategoryDTO)
+				.map(categoryMapper::getDto)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public DocGrammarCategoryDTO postDocGrammarCategory(DocGrammarCategoryDTO categoryDTO) {
+		DocGrammarCategory category = categoryMapper.getEntity(categoryDTO);
+		
+		category = categoryRepository.save(category);
+		
+		return categoryMapper.getDto(category);
 	}
 }
