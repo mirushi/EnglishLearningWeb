@@ -59,4 +59,14 @@ public class DocGrammarCategoryServiceImpl implements DocGrammarCategoryService{
 			
 		}).orElseThrow(RuntimeException::new);
 	}
+
+	@Override
+	public Boolean deleteDocGrammarCategory(Long id) {
+		try {
+			categoryRepository.deleteById(id);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 }

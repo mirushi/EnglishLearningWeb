@@ -11,4 +11,6 @@ public interface DocGrammarCategoryService {
 	DocGrammarCategoryDTO postDocGrammarCategory(DocGrammarCategoryDTO categoryDTO);
 	
 	DocGrammarCategoryDTO patchDocGrammarCategory(Long id, DocGrammarCategoryDTO categoryDTO);
+	
+	Boolean deleteDocGrammarCategory (Long id);
 }
