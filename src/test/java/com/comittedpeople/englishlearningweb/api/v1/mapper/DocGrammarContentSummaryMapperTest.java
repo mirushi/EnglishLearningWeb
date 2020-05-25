@@ -21,7 +21,7 @@ public class DocGrammarContentSummaryMapperTest {
 		content.setTitle("Category");
 		content.setDescription("Description");
 		
-		DocGrammarContentSummaryDTO summaryDTO = mapper.docGrammarContentToContentSummaryDTO(content);
+		DocGrammarContentSummaryDTO summaryDTO = mapper.getDto(content);
 		
 		assertEquals(1L, summaryDTO.getGrammarID());
 		assertEquals("Category", summaryDTO.getGrammarTitle());

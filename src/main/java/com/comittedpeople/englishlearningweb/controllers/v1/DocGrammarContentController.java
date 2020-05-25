@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentDTO;
+import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentSummaryDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarFormDTO;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarForm;
 import com.comittedpeople.englishlearningweb.services.DocGrammarContentService;
 
 @Controller
-@RequestMapping("/api/v1/grammar")
 public class DocGrammarContentController {
 
 	private final DocGrammarContentService docGrammarContentService;
@@ -38,13 +38,13 @@ public class DocGrammarContentController {
 		this.docGrammarContentService = docGrammarContentService;
 	}
 	
-	@GetMapping(value = "{grammarID}")
+	@GetMapping(value = "/api/v1/grammar/{grammarID}")
 	public ResponseEntity<DocGrammarContentDTO> getGrammarContent (@PathVariable Long grammarID){
 		return new ResponseEntity<DocGrammarContentDTO> 
 		(docGrammarContentService.getDocGrammarContentByID(grammarID), HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "{grammarID}")
+	@DeleteMapping(value = "/api/v1/grammar/{grammarID}")
 	public ResponseEntity deleteGrammarContent(@PathVariable Long grammarID) {
 		boolean success = docGrammarContentService.deleteDocGrammarContent(grammarID);
 		
@@ -56,13 +56,13 @@ public class DocGrammarContentController {
 		}
 	}
 	
-	@PatchMapping(value = "{grammarID}")
+	@PatchMapping(value = "/api/v1/grammar/{grammarID}")
 	public ResponseEntity<DocGrammarContentDTO> patchGrammarContent(@PathVariable Long grammarID, @RequestBody DocGrammarContentDTO grammarContent) {
 		DocGrammarContentDTO docGrammarContent = docGrammarContentService.patchDocGrammarContent(grammarID, grammarContent);
 		return new ResponseEntity<DocGrammarContentDTO>(docGrammarContent, HttpStatus.OK);
 	}
 
-	@PostMapping
+	@PostMapping("/api/v1/grammar")
 	public ResponseEntity<DocGrammarContentDTO> postGrammarContent(@Valid @RequestBody DocGrammarContentDTO contentDTO){
 		
 		DocGrammarContentDTO newContent = docGrammarContentService.postDocGrammarContent(contentDTO);
@@ -72,4 +72,13 @@ public class DocGrammarContentController {
 		return new ResponseEntity<DocGrammarContentDTO>(newContent, HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/api/v1/grammarCategories/{id}/grammar")
+	public ResponseEntity<DocGrammarContentSummaryDTO> postGrammarContentSummary(@PathVariable Long id, @Valid @RequestBody DocGrammarContentSummaryDTO summaryDTO){
+		DocGrammarContentSummaryDTO returnDTO = docGrammarContentService.postDocGrammarContentSummary(id, summaryDTO);
+		
+		if (returnDTO == null)
+			return new ResponseEntity<DocGrammarContentSummaryDTO>(returnDTO, HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<DocGrammarContentSummaryDTO>(returnDTO, HttpStatus.OK);
+	}
 }

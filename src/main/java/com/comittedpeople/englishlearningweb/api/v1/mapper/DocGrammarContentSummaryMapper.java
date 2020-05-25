@@ -15,5 +15,11 @@ public interface DocGrammarContentSummaryMapper {
 	@Mapping(source = "id", target = "grammarID")
 	@Mapping(source = "title", target = "grammarTitle")
 	@Mapping(source = "description", target = "grammarDescription")
-	DocGrammarContentSummaryDTO docGrammarContentToContentSummaryDTO (DocGrammarContent grammarContent);
+	DocGrammarContentSummaryDTO getDto (DocGrammarContent grammarContent);
+	
+	@Mapping(source = "grammarID", target = "id")
+	@Mapping(source = "grammarTitle", target = "title")
+	@Mapping(source = "grammarDescription", target = "description")
+	DocGrammarContent getEntity (DocGrammarContentSummaryDTO summaryDTO);
+	
 }

@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import com.comittedpeople.englishlearningweb.api.v1.mapper.DocGrammarContentMapper;
+import com.comittedpeople.englishlearningweb.api.v1.mapper.DocGrammarContentSummaryMapper;
 import com.comittedpeople.englishlearningweb.api.v1.mapper.DocGrammarFormMapper;
 import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentDTO;
+import com.comittedpeople.englishlearningweb.api.v1.model.DocGrammarContentSummaryDTO;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarForm;
@@ -25,6 +27,9 @@ public class DocGrammarContentServiceImpl implements DocGrammarContentService{
 
 	@Autowired
 	private DocGrammarContentMapper contentMapper;
+	
+	@Autowired
+	private DocGrammarContentSummaryMapper contentSummaryMapper;
 	
 	@Autowired
 	private DocGrammarFormMapper formMapper;
@@ -119,5 +124,31 @@ public class DocGrammarContentServiceImpl implements DocGrammarContentService{
 			return returnDTO;
 		}).orElseThrow(RuntimeException::new);
 	}
-	
+
+	@Override
+	public DocGrammarContentSummaryDTO postDocGrammarContentSummary(Long categoryID, DocGrammarContentSummaryDTO summaryDTO) {
+		//Đầu tiên là ta phải tạo mới content.
+		//Sau đó gắn content với category.
+		//Sau đó lưu lại content.
+		//Sau đó gắn category với content.
+		//Sau đó lưu lại category.
+		//Sau đó chuyển content vừa tạo thành DTO và trả về.
+		
+		DocGrammarContent content = contentSummaryMapper.getEntity(summaryDTO);
+		
+		DocGrammarCategory category;
+		try {
+			category = categoryRepository.findById(categoryID).get();
+		} catch (Exception e) {
+			return null;
+		} 
+		
+		content.setCategory(category);
+		content = contentRepository.save(content);
+		
+		category.getGrammars().add(content);
+		categoryRepository.save(category);
+		
+		return contentSummaryMapper.getDto(content);
+	}
 }
