@@ -33,11 +33,21 @@ public class UserAccountController {
 	@GetMapping("{userID}")
 	public ResponseEntity<UserAccountDTO> getUserAccount(@PathVariable Long userID) {
 		UserAccountDTO returnDTO = userAccountService.getUserByID(userID);
+		
+		//Nếu người dùng hiện tại đang request đến thông tin tài khoản khác thì hạn chế thôi.
+		if (!matchCurrentUserID(userID)) {
+			returnDTO.setCurrentPassword(null);
+			returnDTO.setIsAccountEnabled(null);
+			returnDTO.setNewPassword(null);
+			returnDTO.setPasswordLength(null);
+			returnDTO.setReminder(null);
+			returnDTO.setRoles(null);
+		}
+		
 		if (returnDTO == null)
 			return new ResponseEntity<UserAccountDTO>(returnDTO, HttpStatus.NOT_FOUND);
 		else
 			return new ResponseEntity<UserAccountDTO>(returnDTO, HttpStatus.OK);
-
 	}
 
 	@GetMapping("{userID}/reminders")
