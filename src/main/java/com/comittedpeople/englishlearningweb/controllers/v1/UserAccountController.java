@@ -42,13 +42,11 @@ public class UserAccountController {
 
 	@GetMapping("{userID}/reminders")
 	public ResponseEntity<UserReminderDTO> getUserReminders(@PathVariable Long userID) {
-		Long currentUserID = getCurrentUserID();
-		
-		//Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
-		if (currentUserID != userID) {
+		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
+		if (!matchCurrentUserID(userID)) {
 			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
 		}
-		
+
 		UserAccountDTO userDTO = userAccountService.getUserByID(userID);
 		if (userDTO == null)
 			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.NOT_FOUND);
@@ -59,7 +57,11 @@ public class UserAccountController {
 	@PutMapping("{userID}/reminders")
 	public ResponseEntity<UserReminderDTO> putUserReminders(@PathVariable Long userID,
 			@Valid @RequestBody UserReminderDTO reminderDays) {
-
+		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
+		if (!matchCurrentUserID(userID)) {
+			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
+		}
+		
 		System.out.println("Reminder days : " + reminderDays.toString());
 
 		UserAccountDTO userDTO = userAccountService.putUserReminder(userID, reminderDays);
@@ -72,6 +74,10 @@ public class UserAccountController {
 	@PatchMapping("{userID}")
 	public ResponseEntity<UserAccountDTO> patchUserAccount(@PathVariable Long userID,
 			@Valid @RequestBody UserAccountDTO accountDTO) {
+		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
+		if (!matchCurrentUserID(userID)) {
+			return new ResponseEntity<UserAccountDTO>(new UserAccountDTO(), HttpStatus.FORBIDDEN);
+		}
 
 		UserAccountDTO returnDTO = userAccountService.patchUserByID(userID, accountDTO);
 
@@ -81,23 +87,32 @@ public class UserAccountController {
 			return new ResponseEntity<UserAccountDTO>(returnDTO, HttpStatus.OK);
 	}
 
-	private String getCurrentUsername() {
+	private Boolean matchCurrentUsername(String username) {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String currentUsername;
 		// Kiểm tra xem principle hiện tại có đúng dạng chưa.
 		if (principal instanceof UserDetails) {
-			return ((UserDetails) principal).getUsername();
+			currentUsername = ((UserDetails) principal).getUsername();
 		} else {
-			return principal.toString();
+			currentUsername = principal.toString();
 		}
+		
+		if (currentUsername.equals(username))
+			return true;
+		return false;	
 	}
 
-	private Long getCurrentUserID() {
+	private Boolean matchCurrentUserID(Long userID) {
 		Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long currentUserID;
 		// Kiểm tra xem principle hiện tại có đúng dạng chưa.
 		if (principle instanceof UserDetailsCustom) {
-			return ((UserDetailsCustom) principle).getUseraccount().getId();
+			currentUserID = ((UserDetailsCustom) principle).getUseraccount().getId();
 		} else {
-			return -1L;
+			currentUserID = -1L;
 		}
+		if (currentUserID == userID)
+			return true;
+		return false;
 	}
 }
