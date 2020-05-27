@@ -121,6 +121,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 	public UserAccountDTO patchUserByID(Long userID, UserAccountDTO userAccount) {
 		
 		return userAccountRepository.findById(userID).map(account -> {
+			
+			Boolean isAccountCorrect = false;
+			
 			if (userAccount.getIsAccountEnabled() != null) {
 				account.setEnabled(userAccount.getIsAccountEnabled());
 			}
@@ -135,7 +138,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 			
 			if (userAccount.getNewPassword() != null) {
 //				System.out.println("Into getNewPasword");
-				Boolean isAccountCorrect = verifyAccount(account.getUsername(), userAccount.getCurrentPassword());
+				isAccountCorrect = verifyAccount(account.getUsername(), userAccount.getCurrentPassword());
 				
 				//Chỉ khi nào người dùng nhập vào mật khẩu cũ hợp lệ thì ta mới cho người dùng đổi mật khẩu.
 				if (isAccountCorrect) {
@@ -166,6 +169,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 			}
 			
 			UserAccountDTO returnDTO = userMapper.getDto(userAccountRepository.save(account));
+			
+			if (isAccountCorrect)
+				returnDTO.setCurrentPassword("UPDATE_SUCCESS");
 			
 			return returnDTO;
 		}).orElseThrow(RuntimeException::new);
