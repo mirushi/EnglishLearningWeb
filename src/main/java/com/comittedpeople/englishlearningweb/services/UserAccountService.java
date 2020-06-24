@@ -19,6 +19,10 @@ public interface UserAccountService {
 	
 	UserAccountDTO putUserReminder (Long userID, UserReminderDTO reminder);
 	
+	Boolean setBanUserID (Long userID, Boolean setStatus);
+		
 	List<UserAccountDTO> getAllUsers();
+	
+	Boolean isUserIDAdmin (Long userID);
 
 }

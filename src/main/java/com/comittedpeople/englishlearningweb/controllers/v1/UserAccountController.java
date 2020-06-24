@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.stat.internal.StatsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
@@ -65,7 +67,7 @@ public class UserAccountController {
 	@GetMapping("{userID}/reminders")
 	public ResponseEntity<UserReminderDTO> getUserReminders(@PathVariable Long userID) {
 		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
-		if (!matchCurrentUserID(userID)) {
+		if (!matchCurrentUserID(userID) && !isCurrentUserAdmin()) {
 			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
 		}
 
@@ -76,6 +78,21 @@ public class UserAccountController {
 			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(userDTO.getReminder()), HttpStatus.OK);
 	}
 
+	@GetMapping("{userID}/ban")
+	public ResponseEntity setUserBanStatus(@PathVariable Long userID, @RequestParam("status")Integer status) {
+		Boolean isBanned = false;
+		if (status == 1)
+			isBanned = true;
+		if (status == null)
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		Boolean success = userAccountService.setBanUserID(userID, isBanned);
+		if (success)
+			return new ResponseEntity(HttpStatus.OK);
+		else {
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		}
+	}
+	
 	@PutMapping("{userID}/reminders")
 	public ResponseEntity<UserReminderDTO> putUserReminders(@PathVariable Long userID,
 			@Valid @RequestBody UserReminderDTO reminderDays) {
@@ -124,6 +141,18 @@ public class UserAccountController {
 		return false;	
 	}
 
+	private Boolean isCurrentUserAdmin() {
+		Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Long currentUserID;
+		if (principle instanceof UserDetailsCustom) {
+			currentUserID = ((UserDetailsCustom)principle).getUseraccount().getId();
+		}else {
+			currentUserID = -1L;
+			return false;
+		}
+		return userAccountService.isUserIDAdmin(currentUserID);
+	}
+	
 	private Boolean matchCurrentUserID(Long userID) {
 		Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Long currentUserID;

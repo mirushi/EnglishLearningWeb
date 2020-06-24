@@ -203,4 +203,32 @@ public class UserAccountServiceImpl implements UserAccountService {
 				.collect(Collectors.toList());
 		return userAccountDTOs;
 	}
+
+	@Override
+	public Boolean setBanUserID(Long userID, Boolean setStatus) {
+		UserAccount user = userAccountRepository.findById(userID).get();
+		if (user == null)
+			return false;
+		user.setEnabled(!setStatus);
+		user = userAccountRepository.save(user);
+		if (user.getEnabled() == setStatus)
+			return true;
+		return false;
+	}
+
+	@Override
+	public Boolean isUserIDAdmin(Long userID) {
+		
+		UserAccount user = userAccountRepository.findById(userID).get();
+		if (user == null)
+			return false;
+		
+		//Lấy danh sách tất cả các roles, nếu có chứa admin thì user là admin.
+		Set<AccountAuthority> authorities = user.getAuthorities();
+		for (AccountAuthority authority : authorities) {
+			if (authority.getName() == "ROLE_ADMIN")
+				return true;
+		}
+		return false;
+	}
 }
