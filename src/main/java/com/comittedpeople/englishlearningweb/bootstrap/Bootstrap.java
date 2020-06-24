@@ -135,28 +135,84 @@ public class Bootstrap implements CommandLineRunner {
 		adminAccount.setEnabled(true);
 		adminAccount.setEmail("committedpeople@gmail.com");
 		adminAccount.setDisplayname("Committed");
-		adminAccount.setReminder(9);
+		adminAccount.setReminder(1);
 		
 		adminAccount.getAuthorities().addAll(Arrays.asList(admin,user));
 		
 		userAccountRepository.save(adminAccount);
 		
+		//Tạo 1 user account.
 		UserAccount userAccount = new UserAccount();
 		userAccount.setId(2L);
-		userAccount.setUsername("user");
-		userAccount.setPassword(passwordEncoder.encode("cmpp"));
+		userAccount.setUsername("me");
+		userAccount.setPassword(passwordEncoder.encode("me"));
 		userAccount.setEnabled(true);
 		userAccount.setEmail("committedpeople@gmail.com");
 		userAccount.setDisplayname("Committed");
-		userAccount.setReminder(10);
-		
+		userAccount.setReminder(2);
+		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		userAccount.getAuthorities().addAll(Arrays.asList(user));
 		
+		//Tạo 1 user account.
+		UserAccount userAccount2 = new UserAccount();
+		userAccount2.setId(3L);
+		userAccount2.setUsername("you");
+		userAccount2.setPassword(passwordEncoder.encode("you"));
+		userAccount2.setEnabled(true);
+		userAccount2.setEmail("committedpeople@gmail.com");
+		userAccount2.setDisplayname("Committed");
+		userAccount2.setReminder(3);
+		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
+		userAccount2.getAuthorities().addAll(Arrays.asList(user));
+		
+		//Tạo 1 user account.
+		UserAccount userAccount3 = new UserAccount();
+		userAccount3.setId(4L);
+		userAccount3.setUsername("we");
+		userAccount3.setPassword(passwordEncoder.encode("we"));
+		userAccount3.setEnabled(true);
+		userAccount3.setEmail("committedpeople@gmail.com");
+		userAccount3.setDisplayname("Committed");
+		userAccount3.setReminder(5);
+		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
+		userAccount3.getAuthorities().addAll(Arrays.asList(user));
+		
+		//Tạo 1 user account.
+		UserAccount userAccount4 = new UserAccount();
+		userAccount4.setId(5L);
+		userAccount4.setUsername("he");
+		userAccount4.setPassword(passwordEncoder.encode("he"));
+		userAccount4.setEnabled(true);
+		userAccount4.setEmail("committedpeople@gmail.com");
+		userAccount4.setDisplayname("Committed");
+		userAccount4.setReminder(1);
+		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
+		userAccount4.getAuthorities().addAll(Arrays.asList(user));
+		
+		//Tạo 1 user account.
+		UserAccount userAccount5 = new UserAccount();
+		userAccount5.setId(6L);
+		userAccount5.setUsername("they");
+		userAccount5.setPassword(passwordEncoder.encode("they"));
+		userAccount5.setEnabled(true);
+		userAccount5.setEmail("committedpeople@gmail.com");
+		userAccount5.setDisplayname("Committed");
+		userAccount5.setReminder(0);
+		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
+		userAccount5.getAuthorities().addAll(Arrays.asList(user));
+		
+		//Lưu lại các user vừa tạo.
+		userAccount = userAccountRepository.save(userAccount);
+		userAccount2 = userAccountRepository.save(userAccount2);
+		userAccount3 = userAccountRepository.save(userAccount3);
+		userAccount4 = userAccountRepository.save(userAccount4);
+		userAccount5 = userAccountRepository.save(userAccount5);
+		
+		//Thêm 2 chiều cho cả các phân quyền. Các phân quyền cũng phải nắm được thông tin User thuộc.
 		admin.getUsers().add(adminAccount);
-		user.getUsers().addAll(Arrays.asList(userAccount, adminAccount));
-		
-		userAccountRepository.save(userAccount);
-		
+		user.getUsers().addAll(Arrays.asList(userAccount, userAccount2, userAccount3, userAccount4, userAccount5, adminAccount));
+
+		//Lưu lại các phân quyền.
 		authorityRepository.save(admin);
 		authorityRepository.save(user);
 		
