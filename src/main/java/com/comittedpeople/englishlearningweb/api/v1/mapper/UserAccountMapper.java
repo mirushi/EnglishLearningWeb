@@ -18,6 +18,7 @@ public interface UserAccountMapper {
 	
 	UserAccountMapper INSTANCE = Mappers.getMapper(UserAccountMapper.class);
 	
+	@Mapping(source = "id", target = "userID")
 	@Mapping(source = "username", target = "userName")
 	@Mapping(source = "displayname", target = "displayName")
 	@Mapping(source = "enabled", target = "isAccountEnabled")

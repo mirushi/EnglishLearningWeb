@@ -4,6 +4,8 @@ import java.util.List;
 
 public class UserAccountDTO {
 	
+	private Integer userID; 
+	
 	private String userName;
 	
 	private String displayName;
@@ -25,7 +27,7 @@ public class UserAccountDTO {
 	private Integer reminder;
 	
 	private List<String> roles;
-
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -96,5 +98,13 @@ public class UserAccountDTO {
 
 	public void setNewPassword(String newPassword) {
 		this.newPassword = newPassword;
+	}
+
+	public Integer getUserID() {
+		return userID;
+	}
+
+	public void setUserID(Integer userID) {
+		this.userID = userID;
 	}
 }
