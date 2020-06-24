@@ -1,7 +1,5 @@
 package com.comittedpeople.englishlearningweb.controllers.v1;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.util.List;
 
 import javax.validation.Valid;
@@ -49,7 +47,7 @@ public class UserAccountController {
 		UserAccountDTO returnDTO = userAccountService.getUserByID(userID);
 		
 		//Nếu người dùng hiện tại đang request đến thông tin tài khoản khác thì hạn chế thôi.
-		if (!matchCurrentUserID(userID)) {
+		if (!isCurrentUserHaveEditPermission(userID)) {
 			returnDTO.setCurrentPassword(null);
 			returnDTO.setIsAccountEnabled(null);
 			returnDTO.setNewPassword(null);
@@ -67,7 +65,7 @@ public class UserAccountController {
 	@GetMapping("{userID}/reminders")
 	public ResponseEntity<UserReminderDTO> getUserReminders(@PathVariable Long userID) {
 		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
-		if (!matchCurrentUserID(userID) && !isCurrentUserAdmin()) {
+		if (!isCurrentUserHaveEditPermission(userID)) {
 			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
 		}
 
@@ -97,7 +95,7 @@ public class UserAccountController {
 	public ResponseEntity<UserReminderDTO> putUserReminders(@PathVariable Long userID,
 			@Valid @RequestBody UserReminderDTO reminderDays) {
 		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
-		if (!matchCurrentUserID(userID)) {
+		if (!isCurrentUserHaveEditPermission(userID)) {
 			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
 		}
 		
@@ -114,7 +112,7 @@ public class UserAccountController {
 	public ResponseEntity<UserAccountDTO> patchUserAccount(@PathVariable Long userID,
 			@Valid @RequestBody UserAccountDTO accountDTO) {
 		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
-		if (!matchCurrentUserID(userID)) {
+		if (!isCurrentUserHaveEditPermission(userID)) {
 			return new ResponseEntity<UserAccountDTO>(new UserAccountDTO(), HttpStatus.FORBIDDEN);
 		}
 
@@ -139,6 +137,13 @@ public class UserAccountController {
 		if (currentUsername.equals(username))
 			return true;
 		return false;	
+	}
+	
+	private Boolean isCurrentUserHaveEditPermission(Long currentUserID) {
+		//Để có thể chỉnh được thông tin của User, thì có 2 TH được cho phép :
+		//1. Admin chỉnh thông tin của User.
+		//2. User tự chỉnh thông tin của mình.
+		return (isCurrentUserAdmin() || matchCurrentUserID(currentUserID));
 	}
 
 	private Boolean isCurrentUserAdmin() {
