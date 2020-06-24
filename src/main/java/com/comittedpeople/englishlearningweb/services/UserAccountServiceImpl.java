@@ -1,8 +1,11 @@
 package com.comittedpeople.englishlearningweb.services;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -189,5 +192,15 @@ public class UserAccountServiceImpl implements UserAccountService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<UserAccountDTO> getAllUsers() {
+		// TODO Auto-generated method stub
+		List<UserAccountDTO> userAccountDTOs = userAccountRepository.findAll()
+				.stream()
+				.map(userMapper::getDto)
+				.collect(Collectors.toList());
+		return userAccountDTOs;
 	}
 }

@@ -2,6 +2,8 @@ package com.comittedpeople.englishlearningweb.controllers.v1;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,16 @@ public class UserAccountController {
 	@Autowired
 	private UserAccountService userAccountService;
 
+	@GetMapping
+	public ResponseEntity<List<UserAccountDTO>> getAllUserAccount() {
+		List<UserAccountDTO> returnDTOs = userAccountService.getAllUsers();
+		
+		if (returnDTOs == null)
+			return new ResponseEntity<List<UserAccountDTO>> (returnDTOs, HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<List<UserAccountDTO>> (returnDTOs, HttpStatus.OK);
+	}
+	
 	@GetMapping("{userID}")
 	public ResponseEntity<UserAccountDTO> getUserAccount(@PathVariable Long userID) {
 		UserAccountDTO returnDTO = userAccountService.getUserByID(userID);
