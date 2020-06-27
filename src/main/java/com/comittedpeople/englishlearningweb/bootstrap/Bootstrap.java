@@ -133,9 +133,16 @@ public class Bootstrap implements CommandLineRunner {
 		messageAdmin.setMessageSentDate(getLocalDateTimeFromString("2020-06-26 15:45:30.123"));
 		messageAdmin.setUserSentAccount(adminAccount);
 		
+		ChatRoomMessage messageAdmin2 = new ChatRoomMessage();
+		messageAdmin2.setChatContent("What's up guys and girls ?");
+		messageAdmin2.setMessageSentDate(getLocalDateTimeFromString("2020-06-26 15:45:30.456"));
+		messageAdmin2.setUserSentAccount(adminAccount);
+		
 		adminAccount.getChatRoomMessages().add(messageAdmin);
+		adminAccount.getChatRoomMessages().add(messageAdmin2);
 		
 		chatRoomMessageRepository.save(messageAdmin);
+		chatRoomMessageRepository.save(messageAdmin2);
 		userAccountRepository.save(adminAccount);
 		
 		//Me.
@@ -144,9 +151,16 @@ public class Bootstrap implements CommandLineRunner {
 		messageMe.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 15:59:30.133"));
 		messageMe.setUserSentAccount(meAccount);
 		
+		ChatRoomMessage messageMe2 = new ChatRoomMessage();
+		messageMe2.setChatContent("This site is really awesome by the way !");
+		messageMe2.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 15:59:30.135"));
+		messageMe2.setUserSentAccount(meAccount);
+		
 		meAccount.getChatRoomMessages().add(messageMe);
+		meAccount.getChatRoomMessages().add(messageMe2);
 		
 		chatRoomMessageRepository.save(messageMe);
+		chatRoomMessageRepository.save(messageMe2);
 		userAccountRepository.save(meAccount);
 		
 		//You.
@@ -155,9 +169,16 @@ public class Bootstrap implements CommandLineRunner {
 		messageYou.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 15:50:30.110"));
 		messageYou.setUserSentAccount(youAccount);
 		
+		ChatRoomMessage messageYou2 = new ChatRoomMessage();
+		messageYou2.setChatContent("Let's improve our English together !");
+		messageYou2.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 15:50:54.112"));
+		messageYou2.setUserSentAccount(youAccount);
+		
 		youAccount.getChatRoomMessages().add(messageYou);
+		youAccount.getChatRoomMessages().add(messageYou2);
 		
 		chatRoomMessageRepository.save(messageYou);
+		chatRoomMessageRepository.save(messageYou2);
 		userAccountRepository.save(youAccount);
 		
 		//We.
@@ -166,9 +187,16 @@ public class Bootstrap implements CommandLineRunner {
 		messageWe.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 16:45:30.930"));
 		messageWe.setUserSentAccount(weAccount);
 		
+		ChatRoomMessage messageWe2 = new ChatRoomMessage();
+		messageWe2.setChatContent("Anyone here has anykind of certificate yet ?");
+		messageWe2.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 16:45:40.532"));
+		messageWe2.setUserSentAccount(weAccount);
+		
 		weAccount.getChatRoomMessages().add(messageWe);
+		weAccount.getChatRoomMessages().add(messageWe2);
 		
 		chatRoomMessageRepository.save(messageWe);
+		chatRoomMessageRepository.save(messageWe2);
 		userAccountRepository.save(weAccount);
 		
 		//He.
@@ -177,9 +205,16 @@ public class Bootstrap implements CommandLineRunner {
 		messageHe.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 17:45:30.130"));
 		messageHe.setUserSentAccount(heAccount);
 		
+		ChatRoomMessage messageHe2 = new ChatRoomMessage();
+		messageHe2.setChatContent("Committed People is really awesome BTW");
+		messageHe2.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 18:41:30.130"));
+		messageHe2.setUserSentAccount(heAccount);
+		
 		heAccount.getChatRoomMessages().add(messageHe);
+		heAccount.getChatRoomMessages().add(messageHe2);
 		
 		chatRoomMessageRepository.save(messageHe);
+		chatRoomMessageRepository.save(messageHe2);
 		userAccountRepository.save(heAccount);
 		
 		//They.
@@ -188,9 +223,16 @@ public class Bootstrap implements CommandLineRunner {
 		messageThey.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 00:00:00.000"));
 		messageThey.setUserSentAccount(theyAccount);
 		
+		ChatRoomMessage messageThey2 = new ChatRoomMessage();
+		messageThey2.setChatContent("I'll be waiting from dust till dawn ...");
+		messageThey2.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 01:20:00.000"));
+		messageThey2.setUserSentAccount(theyAccount);
+		
 		theyAccount.getChatRoomMessages().add(messageThey);
+		theyAccount.getChatRoomMessages().add(messageThey2);
 		
 		chatRoomMessageRepository.save(messageThey);
+		chatRoomMessageRepository.save(messageThey2);
 		userAccountRepository.save(theyAccount);
 	}
 	
