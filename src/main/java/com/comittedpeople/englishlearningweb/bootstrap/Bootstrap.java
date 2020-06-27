@@ -1,5 +1,7 @@
 package com.comittedpeople.englishlearningweb.bootstrap;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.comittedpeople.englishlearningweb.domain.AccountAuthority;
+import com.comittedpeople.englishlearningweb.domain.ChatRoomMessage;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarCategory;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarContent;
 import com.comittedpeople.englishlearningweb.domain.DocGrammarExample;
@@ -25,6 +28,7 @@ import com.comittedpeople.englishlearningweb.domain.DocVocabContent;
 import com.comittedpeople.englishlearningweb.domain.DocVocabLesson;
 import com.comittedpeople.englishlearningweb.domain.UserAccount;
 import com.comittedpeople.englishlearningweb.repositories.AccountAuthorityRepository;
+import com.comittedpeople.englishlearningweb.repositories.ChatRoomMessageRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarCategoryRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarContentRepository;
 import com.comittedpeople.englishlearningweb.repositories.DocGrammarExampleRepository;
@@ -40,7 +44,7 @@ import io.jsonwebtoken.lang.Collections;
 @Component
 @Transactional
 public class Bootstrap implements CommandLineRunner {
-
+	
 	private DocVocabCategoryRepository docVocabCategoryRepository;
 
 	private DocVocabLessonRepository docVocabLessonRepository;
@@ -60,6 +64,16 @@ public class Bootstrap implements CommandLineRunner {
 	
 	private AccountAuthorityRepository authorityRepository;
 	
+	private ChatRoomMessageRepository chatRoomMessageRepository;
+	
+	//Lưu lại các user luôn đỡ phải tìm lại.
+	private UserAccount adminAccount;
+	private UserAccount meAccount;
+	private UserAccount weAccount;
+	private UserAccount youAccount;
+	private UserAccount theyAccount;
+	private UserAccount heAccount;
+	
 	//PasswordEncoder dùng để mã hoá mật khẩu cho user.
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -69,8 +83,8 @@ public class Bootstrap implements CommandLineRunner {
 			DocGrammarCategoryRepository docGrammarCategoryRepository,
 			DocGrammarExampleRepository docGrammarExampleRepository, DocGrammarNoteRepository docGrammarNoteRepository,
 			DocGrammarContentRepository docGrammarContentRepository, DocGrammarFormRepository docGrammarFormRepository,
-			UserAccountRepository userAccountRepository, AccountAuthorityRepository accountRepository,
-			PasswordEncoder passwordEncoder) {
+			UserAccountRepository userAccountRepository, AccountAuthorityRepository authorityRepository,
+			ChatRoomMessageRepository chatRoomMessageRepository, PasswordEncoder passwordEncoder) {
 		super();
 		this.docVocabCategoryRepository = docVocabCategoryRepository;
 		this.docVocabLessonRepository = docVocabLessonRepository;
@@ -81,7 +95,8 @@ public class Bootstrap implements CommandLineRunner {
 		this.docGrammarContentRepository = docGrammarContentRepository;
 		this.docGrammarFormRepository = docGrammarFormRepository;
 		this.userAccountRepository = userAccountRepository;
-		this.authorityRepository = accountRepository;
+		this.authorityRepository = authorityRepository;
+		this.chatRoomMessageRepository = chatRoomMessageRepository;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -106,6 +121,96 @@ public class Bootstrap implements CommandLineRunner {
 		setupAccountAuthority();
 		
 		setupUserAccount();
+		
+		setupChatroomMessage();
+	}
+	
+	private void setupChatroomMessage() {
+		
+//		UserAccount admin = userAccountRepository.findByUsername("admin");
+//		UserAccount me = userAccountRepository.findByUsername("me");
+//		UserAccount you = userAccountRepository.findByUsername("you");
+//		UserAccount we = userAccountRepository.findByUsername("we");
+//		UserAccount he = userAccountRepository.findByUsername("he");
+//		UserAccount they = userAccountRepository.findByUsername("they");
+		
+		//Admin.
+		ChatRoomMessage messageAdmin = new ChatRoomMessage();
+		messageAdmin.setChatContent("Hello ! I'm new !");
+		messageAdmin.setMessageSentDate(getLocalDateTimeFromString("2020-06-26 15:45:30.123"));
+		messageAdmin.setUserSentAccount(adminAccount);
+		
+		if (messageAdmin == null)
+			System.out.println("Admin message is null");
+		if (adminAccount == null)
+			System.out.println("Admin account is null");
+		
+		adminAccount.getChatRoomMessages().add(messageAdmin);
+		
+		chatRoomMessageRepository.save(messageAdmin);
+		userAccountRepository.save(adminAccount);
+		
+		//Me.
+		ChatRoomMessage messageMe = new ChatRoomMessage();
+		messageMe.setChatContent("Voila ! I'm me ! Hello everyone !");
+		messageMe.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 15:59:30.133"));
+		messageMe.setUserSentAccount(meAccount);
+		
+		meAccount.getChatRoomMessages().add(messageMe);
+		
+		chatRoomMessageRepository.save(messageMe);
+		userAccountRepository.save(meAccount);
+		
+		//You.
+		ChatRoomMessage messageYou = new ChatRoomMessage();
+		messageYou.setChatContent("Hi guys ! New here !");
+		messageYou.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 15:50:30.110"));
+		messageYou.setUserSentAccount(youAccount);
+		
+		youAccount.getChatRoomMessages().add(messageYou);
+		
+		chatRoomMessageRepository.save(messageYou);
+		userAccountRepository.save(youAccount);
+		
+		//We.
+		ChatRoomMessage messageWe = new ChatRoomMessage();
+		messageWe.setChatContent("Hello ! How you guys are doing ?");
+		messageWe.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 16:45:30.930"));
+		messageWe.setUserSentAccount(weAccount);
+		
+		weAccount.getChatRoomMessages().add(messageWe);
+		
+		chatRoomMessageRepository.save(messageWe);
+		userAccountRepository.save(weAccount);
+		
+		//He.
+		ChatRoomMessage messageHe = new ChatRoomMessage();
+		messageHe.setChatContent("Wow ! There are so many people here !");
+		messageHe.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 17:45:30.130"));
+		messageHe.setUserSentAccount(heAccount);
+		
+		heAccount.getChatRoomMessages().add(messageHe);
+		
+		chatRoomMessageRepository.save(messageHe);
+		userAccountRepository.save(heAccount);
+		
+		//They.
+		ChatRoomMessage messageThey = new ChatRoomMessage();
+		messageThey.setChatContent("Hi admin ! Waiting for people to join !");
+		messageThey.setMessageSentDate(getLocalDateTimeFromString("2020-06-27 00:00:00.000"));
+		messageThey.setUserSentAccount(theyAccount);
+		
+		theyAccount.getChatRoomMessages().add(messageThey);
+		
+		chatRoomMessageRepository.save(messageThey);
+		userAccountRepository.save(theyAccount);
+	}
+	
+	private LocalDateTime getLocalDateTimeFromString (String dateTime) {
+		//DateTimeFormatter để parse từ String sang LocalDateTime.
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+		LocalDateTime result = LocalDateTime.parse(dateTime, formatter);
+		return result;
 	}
 	
 	private void setupAccountAuthority() {
@@ -127,7 +232,7 @@ public class Bootstrap implements CommandLineRunner {
 		AccountAuthority admin = authorityRepository.findByName("ROLE_ADMIN");
 		AccountAuthority user = authorityRepository.findByName("ROLE_USER");
 		
-		UserAccount adminAccount = new UserAccount();
+		adminAccount = new UserAccount();
 		
 		adminAccount.setId(1L);
 		adminAccount.setUsername("admin");
@@ -142,75 +247,75 @@ public class Bootstrap implements CommandLineRunner {
 		userAccountRepository.save(adminAccount);
 		
 		//Tạo 1 user account.
-		UserAccount userAccount = new UserAccount();
-		userAccount.setId(2L);
-		userAccount.setUsername("me");
-		userAccount.setPassword(passwordEncoder.encode("me"));
-		userAccount.setEnabled(true);
-		userAccount.setEmail("committedpeople@gmail.com");
-		userAccount.setDisplayname("Committed");
-		userAccount.setReminder(2);
+		meAccount = new UserAccount();
+		meAccount.setId(2L);
+		meAccount.setUsername("me");
+		meAccount.setPassword(passwordEncoder.encode("me"));
+		meAccount.setEnabled(true);
+		meAccount.setEmail("committedpeople@gmail.com");
+		meAccount.setDisplayname("Committed");
+		meAccount.setReminder(2);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
-		userAccount.getAuthorities().addAll(Arrays.asList(user));
+		meAccount.getAuthorities().addAll(Arrays.asList(user));
 		
 		//Tạo 1 user account.
-		UserAccount userAccount2 = new UserAccount();
-		userAccount2.setId(3L);
-		userAccount2.setUsername("you");
-		userAccount2.setPassword(passwordEncoder.encode("you"));
-		userAccount2.setEnabled(true);
-		userAccount2.setEmail("committedpeople@gmail.com");
-		userAccount2.setDisplayname("Committed");
-		userAccount2.setReminder(3);
+		youAccount = new UserAccount();
+		youAccount.setId(3L);
+		youAccount.setUsername("you");
+		youAccount.setPassword(passwordEncoder.encode("you"));
+		youAccount.setEnabled(true);
+		youAccount.setEmail("committedpeople@gmail.com");
+		youAccount.setDisplayname("Committed");
+		youAccount.setReminder(3);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
-		userAccount2.getAuthorities().addAll(Arrays.asList(user));
+		youAccount.getAuthorities().addAll(Arrays.asList(user));
 		
 		//Tạo 1 user account.
-		UserAccount userAccount3 = new UserAccount();
-		userAccount3.setId(4L);
-		userAccount3.setUsername("we");
-		userAccount3.setPassword(passwordEncoder.encode("we"));
-		userAccount3.setEnabled(true);
-		userAccount3.setEmail("committedpeople@gmail.com");
-		userAccount3.setDisplayname("Committed");
-		userAccount3.setReminder(5);
+		weAccount = new UserAccount();
+		weAccount.setId(4L);
+		weAccount.setUsername("we");
+		weAccount.setPassword(passwordEncoder.encode("we"));
+		weAccount.setEnabled(true);
+		weAccount.setEmail("committedpeople@gmail.com");
+		weAccount.setDisplayname("Committed");
+		weAccount.setReminder(5);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
-		userAccount3.getAuthorities().addAll(Arrays.asList(user));
+		weAccount.getAuthorities().addAll(Arrays.asList(user));
 		
 		//Tạo 1 user account.
-		UserAccount userAccount4 = new UserAccount();
-		userAccount4.setId(5L);
-		userAccount4.setUsername("he");
-		userAccount4.setPassword(passwordEncoder.encode("he"));
-		userAccount4.setEnabled(true);
-		userAccount4.setEmail("committedpeople@gmail.com");
-		userAccount4.setDisplayname("Committed");
-		userAccount4.setReminder(1);
+		heAccount = new UserAccount();
+		heAccount.setId(5L);
+		heAccount.setUsername("he");
+		heAccount.setPassword(passwordEncoder.encode("he"));
+		heAccount.setEnabled(true);
+		heAccount.setEmail("committedpeople@gmail.com");
+		heAccount.setDisplayname("Committed");
+		heAccount.setReminder(1);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
-		userAccount4.getAuthorities().addAll(Arrays.asList(user));
+		heAccount.getAuthorities().addAll(Arrays.asList(user));
 		
 		//Tạo 1 user account.
-		UserAccount userAccount5 = new UserAccount();
-		userAccount5.setId(6L);
-		userAccount5.setUsername("they");
-		userAccount5.setPassword(passwordEncoder.encode("they"));
-		userAccount5.setEnabled(true);
-		userAccount5.setEmail("committedpeople@gmail.com");
-		userAccount5.setDisplayname("Committed");
-		userAccount5.setReminder(0);
+		theyAccount = new UserAccount();
+		theyAccount.setId(6L);
+		theyAccount.setUsername("they");
+		theyAccount.setPassword(passwordEncoder.encode("they"));
+		theyAccount.setEnabled(true);
+		theyAccount.setEmail("committedpeople@gmail.com");
+		theyAccount.setDisplayname("Committed");
+		theyAccount.setReminder(0);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
-		userAccount5.getAuthorities().addAll(Arrays.asList(user));
+		theyAccount.getAuthorities().addAll(Arrays.asList(user));
 		
 		//Lưu lại các user vừa tạo.
-		userAccount = userAccountRepository.save(userAccount);
-		userAccount2 = userAccountRepository.save(userAccount2);
-		userAccount3 = userAccountRepository.save(userAccount3);
-		userAccount4 = userAccountRepository.save(userAccount4);
-		userAccount5 = userAccountRepository.save(userAccount5);
+		meAccount = userAccountRepository.save(meAccount);
+		youAccount = userAccountRepository.save(youAccount);
+		weAccount = userAccountRepository.save(weAccount);
+		heAccount = userAccountRepository.save(heAccount);
+		theyAccount = userAccountRepository.save(theyAccount);
 		
 		//Thêm 2 chiều cho cả các phân quyền. Các phân quyền cũng phải nắm được thông tin User thuộc.
 		admin.getUsers().add(adminAccount);
-		user.getUsers().addAll(Arrays.asList(userAccount, userAccount2, userAccount3, userAccount4, userAccount5, adminAccount));
+		user.getUsers().addAll(Arrays.asList(meAccount, youAccount, weAccount, heAccount, theyAccount, adminAccount));
 
 		//Lưu lại các phân quyền.
 		authorityRepository.save(admin);
