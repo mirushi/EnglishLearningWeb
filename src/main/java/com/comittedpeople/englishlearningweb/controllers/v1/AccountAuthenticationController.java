@@ -85,32 +85,4 @@ public class AccountAuthenticationController {
 		// Trả về đăng ký thành công.
 		//return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(), HttpStatus.OK);
 	}
-
-//	// Khi đăng ký, nếu thành công sẽ trả về luôn token nên trả về luôn
-//	// LoginResponseDTO.
-//	@PostMapping("/register")
-//	public ResponseEntity<LoginResponseDTO> registerUser(@Valid @RequestBody RegisterRequestDTO registerRequest,
-//			HttpServletRequest request, HttpServletResponse response) {
-//
-//		// Tiến hành đăng ký user mới.
-//		UserAccount account = userAccountService.createUserAccount(registerRequest);
-//
-//		// Tạo tài khoản không thành công.
-//		if (account == null)
-//			return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(), HttpStatus.CONFLICT);
-//
-//		//Đăng ký thành công.
-//		//Trả về token cho User.
-//		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(registerRequest.getUsername(), registerRequest.getPassword());
-//		
-//		
-//		SecurityContextHolder.getContext().setAuthentication(authToken);
-//		
-//		String jwt= tokenProvider.generateToken((UserDetailsCustom) authToken.getPrincipal());
-//		
-//		return new LoginResponseDTO(jwt);
-//		
-//		// Trả về đăng ký thành công.
-//		//return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(), HttpStatus.OK);
-//	}
 }
