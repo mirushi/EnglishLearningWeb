@@ -184,7 +184,6 @@ public class UserAccountServiceImpl implements UserAccountService {
 		
 //		System.out.println("Username : " + username);
 //		System.out.println("Password : " + password);
-		
 		try {
 			 authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(username, password));
