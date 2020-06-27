@@ -22,24 +22,10 @@ public interface ChatRoomMessageMapper {
 	@Mapping(source = "id", target = "id")
 	@Mapping(source = "chatContent", target = "content")
 	@Mapping(source = "messageSentDate", target = "timeStamp")
-	@Mapping(source = "userSentAccount", target = "userSentID", qualifiedByName = "userToUserID")
-	@Mapping(source = "userSentAccount", target = "userSentName", qualifiedByName = "userToUsername")
+	@Mapping(source = "userSentAccount.id", target = "userSentID")
+	@Mapping(source = "userSentAccount.displayname", target = "userSentName")
 	ChatRoomMessageDTO getDto (ChatRoomMessage chatRoomMessage);
-	
-	@Named("userToUserID")
-	public static Long getUserID(UserAccount userAccount) {
-		if (userAccount == null)
-			return -1L;
-		return userAccount.getId();
-	}
-	
-	@Named("userToUsername")
-	public static String getDisplayName(UserAccount userAccount) {
-		if (userAccount == null)
-			return "";
-		return userAccount.getDisplayname();
-	}
-	
+
 	@Mapping(source = "id", target = "id")
 	@Mapping(source = "content", target = "chatContent")
 	@Mapping(source = "timeStamp", target = "messageSentDate", qualifiedByName = "localDateTimeNow")

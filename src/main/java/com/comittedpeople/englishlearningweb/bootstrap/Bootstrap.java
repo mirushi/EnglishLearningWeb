@@ -127,23 +127,11 @@ public class Bootstrap implements CommandLineRunner {
 	
 	private void setupChatroomMessage() {
 		
-//		UserAccount admin = userAccountRepository.findByUsername("admin");
-//		UserAccount me = userAccountRepository.findByUsername("me");
-//		UserAccount you = userAccountRepository.findByUsername("you");
-//		UserAccount we = userAccountRepository.findByUsername("we");
-//		UserAccount he = userAccountRepository.findByUsername("he");
-//		UserAccount they = userAccountRepository.findByUsername("they");
-		
 		//Admin.
 		ChatRoomMessage messageAdmin = new ChatRoomMessage();
 		messageAdmin.setChatContent("Hello ! I'm new !");
 		messageAdmin.setMessageSentDate(getLocalDateTimeFromString("2020-06-26 15:45:30.123"));
 		messageAdmin.setUserSentAccount(adminAccount);
-		
-		if (messageAdmin == null)
-			System.out.println("Admin message is null");
-		if (adminAccount == null)
-			System.out.println("Admin account is null");
 		
 		adminAccount.getChatRoomMessages().add(messageAdmin);
 		
@@ -239,7 +227,7 @@ public class Bootstrap implements CommandLineRunner {
 		adminAccount.setPassword(passwordEncoder.encode("123"));
 		adminAccount.setEnabled(true);
 		adminAccount.setEmail("committedpeople@gmail.com");
-		adminAccount.setDisplayname("Committed");
+		adminAccount.setDisplayname("Admin Committed");
 		adminAccount.setReminder(1);
 		
 		adminAccount.getAuthorities().addAll(Arrays.asList(admin,user));
@@ -253,7 +241,7 @@ public class Bootstrap implements CommandLineRunner {
 		meAccount.setPassword(passwordEncoder.encode("me"));
 		meAccount.setEnabled(true);
 		meAccount.setEmail("committedpeople@gmail.com");
-		meAccount.setDisplayname("Committed");
+		meAccount.setDisplayname("Me Committed");
 		meAccount.setReminder(2);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		meAccount.getAuthorities().addAll(Arrays.asList(user));
@@ -265,7 +253,7 @@ public class Bootstrap implements CommandLineRunner {
 		youAccount.setPassword(passwordEncoder.encode("you"));
 		youAccount.setEnabled(true);
 		youAccount.setEmail("committedpeople@gmail.com");
-		youAccount.setDisplayname("Committed");
+		youAccount.setDisplayname("You Committed");
 		youAccount.setReminder(3);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		youAccount.getAuthorities().addAll(Arrays.asList(user));
@@ -277,7 +265,7 @@ public class Bootstrap implements CommandLineRunner {
 		weAccount.setPassword(passwordEncoder.encode("we"));
 		weAccount.setEnabled(true);
 		weAccount.setEmail("committedpeople@gmail.com");
-		weAccount.setDisplayname("Committed");
+		weAccount.setDisplayname("We Committed");
 		weAccount.setReminder(5);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		weAccount.getAuthorities().addAll(Arrays.asList(user));
@@ -289,7 +277,7 @@ public class Bootstrap implements CommandLineRunner {
 		heAccount.setPassword(passwordEncoder.encode("he"));
 		heAccount.setEnabled(true);
 		heAccount.setEmail("committedpeople@gmail.com");
-		heAccount.setDisplayname("Committed");
+		heAccount.setDisplayname("He Committed");
 		heAccount.setReminder(1);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		heAccount.getAuthorities().addAll(Arrays.asList(user));
@@ -301,7 +289,7 @@ public class Bootstrap implements CommandLineRunner {
 		theyAccount.setPassword(passwordEncoder.encode("they"));
 		theyAccount.setEnabled(true);
 		theyAccount.setEmail("committedpeople@gmail.com");
-		theyAccount.setDisplayname("Committed");
+		theyAccount.setDisplayname("They Committed");
 		theyAccount.setReminder(0);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		theyAccount.getAuthorities().addAll(Arrays.asList(user));

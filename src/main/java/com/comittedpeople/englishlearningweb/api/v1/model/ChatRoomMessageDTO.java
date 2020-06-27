@@ -8,11 +8,11 @@ public class ChatRoomMessageDTO {
 	
 	private String content;
 	
-	private LocalDateTime timeStamp;
+	private String timeStamp;
 	
 	private Long userSentID;
 	
-	private Long userSentName;
+	private String userSentName;
 
 	public Long getId() {
 		return id;
@@ -30,11 +30,11 @@ public class ChatRoomMessageDTO {
 		this.content = content;
 	}
 
-	public LocalDateTime getTimeStamp() {
+	public String getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(LocalDateTime timeStamp) {
+	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
@@ -46,11 +46,11 @@ public class ChatRoomMessageDTO {
 		this.userSentID = userSentID;
 	}
 
-	public Long getUserSentName() {
+	public String getUserSentName() {
 		return userSentName;
 	}
 
-	public void setUserSentName(Long userSentName) {
+	public void setUserSentName(String userSentName) {
 		this.userSentName = userSentName;
 	}
 }
