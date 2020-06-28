@@ -36,6 +36,7 @@ public class UserAccount {
 
 	private Boolean enabled;
 	
+	//Deprecated.
 	private Integer reminder;
 	
 	private Byte reminderMonday;

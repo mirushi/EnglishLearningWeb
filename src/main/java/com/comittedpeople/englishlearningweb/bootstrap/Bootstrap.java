@@ -271,6 +271,13 @@ public class Bootstrap implements CommandLineRunner {
 		adminAccount.setEmail("committedpeople@gmail.com");
 		adminAccount.setDisplayname("Admin Committed");
 		adminAccount.setReminder(1);
+		adminAccount.setReminderMonday((byte) 12);
+		adminAccount.setReminderTuesday((byte) 11);
+		adminAccount.setReminderWednesday((byte) 10);
+		adminAccount.setReminderThursday((byte) 9);
+		adminAccount.setReminderFriday((byte) 8);
+		adminAccount.setReminderSaturday((byte) 7);
+		adminAccount.setReminderSunday((byte) -1);
 		
 		adminAccount.getAuthorities().addAll(Arrays.asList(admin,user));
 		
@@ -285,6 +292,13 @@ public class Bootstrap implements CommandLineRunner {
 		meAccount.setEmail("committedpeople@gmail.com");
 		meAccount.setDisplayname("Me Committed");
 		meAccount.setReminder(2);
+		meAccount.setReminderMonday((byte) 7);
+		meAccount.setReminderTuesday((byte) 18);
+		meAccount.setReminderWednesday((byte) 19);
+		meAccount.setReminderThursday((byte) 11);
+		meAccount.setReminderFriday((byte) 6);
+		meAccount.setReminderSaturday((byte) -1);
+		meAccount.setReminderSunday((byte) -1);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		meAccount.getAuthorities().addAll(Arrays.asList(user));
 		
@@ -297,6 +311,13 @@ public class Bootstrap implements CommandLineRunner {
 		youAccount.setEmail("committedpeople@gmail.com");
 		youAccount.setDisplayname("You Committed");
 		youAccount.setReminder(3);
+		youAccount.setReminderMonday((byte) 5);
+		youAccount.setReminderTuesday((byte) 8);
+		youAccount.setReminderWednesday((byte) 9);
+		youAccount.setReminderThursday((byte) 10);
+		youAccount.setReminderFriday((byte) 11);
+		youAccount.setReminderSaturday((byte) 6);
+		youAccount.setReminderSunday((byte) 7);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		youAccount.getAuthorities().addAll(Arrays.asList(user));
 		
@@ -309,6 +330,13 @@ public class Bootstrap implements CommandLineRunner {
 		weAccount.setEmail("committedpeople@gmail.com");
 		weAccount.setDisplayname("We Committed");
 		weAccount.setReminder(5);
+		weAccount.setReminderMonday((byte) 6);
+		weAccount.setReminderTuesday((byte) -1);
+		weAccount.setReminderWednesday((byte) -1);
+		weAccount.setReminderThursday((byte) -1);
+		weAccount.setReminderFriday((byte) -1);
+		weAccount.setReminderSaturday((byte) -1);
+		weAccount.setReminderSunday((byte) -1);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		weAccount.getAuthorities().addAll(Arrays.asList(user));
 		
@@ -321,6 +349,13 @@ public class Bootstrap implements CommandLineRunner {
 		heAccount.setEmail("committedpeople@gmail.com");
 		heAccount.setDisplayname("He Committed");
 		heAccount.setReminder(1);
+		heAccount.setReminderMonday((byte) -1);
+		heAccount.setReminderTuesday((byte) -1);
+		heAccount.setReminderWednesday((byte) -1);
+		heAccount.setReminderThursday((byte) -1);
+		heAccount.setReminderFriday((byte) -1);
+		heAccount.setReminderSaturday((byte) 7);
+		heAccount.setReminderSunday((byte) 7);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		heAccount.getAuthorities().addAll(Arrays.asList(user));
 		
@@ -333,6 +368,13 @@ public class Bootstrap implements CommandLineRunner {
 		theyAccount.setEmail("committedpeople@gmail.com");
 		theyAccount.setDisplayname("They Committed");
 		theyAccount.setReminder(0);
+		theyAccount.setReminderMonday((byte) -1);
+		theyAccount.setReminderTuesday((byte) -1);
+		theyAccount.setReminderWednesday((byte) -1);
+		theyAccount.setReminderThursday((byte) -1);
+		theyAccount.setReminderFriday((byte) -1);
+		theyAccount.setReminderSaturday((byte) -1);
+		theyAccount.setReminderSunday((byte) -1);
 		//Sau khi tạo xong UserAccount, gán Role cho User vừa tạo.
 		theyAccount.getAuthorities().addAll(Arrays.asList(user));
 		
