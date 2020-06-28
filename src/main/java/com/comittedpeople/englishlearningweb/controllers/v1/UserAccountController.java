@@ -91,6 +91,9 @@ public class UserAccountController {
 			isBanned = true;
 		if (status == null)
 			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		//Chỉ admin mới được ban nick của User khác.
+		if (!isCurrentUserAdmin())
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
 		Boolean success = userAccountService.setBanUserID(userID, isBanned);
 		if (success)
 			return new ResponseEntity(HttpStatus.OK);
