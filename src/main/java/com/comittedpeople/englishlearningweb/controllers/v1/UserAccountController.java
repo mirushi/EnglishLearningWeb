@@ -150,11 +150,13 @@ public class UserAccountController {
 		//Để có thể chỉnh được thông tin của User, thì có 2 TH được cho phép :
 		//1. Admin chỉnh thông tin của User.
 		//2. User tự chỉnh thông tin của mình.
+
 		//Debug.
 //		if (isCurrentUserAdmin())
 //			System.out.println("Current user is admin !");
 //		if (matchCurrentUserID(currentUserID))
 //			System.out.println("Match current User ID !");
+
 		return (isCurrentUserAdmin() || matchCurrentUserID(currentUserID));
 	}
 
