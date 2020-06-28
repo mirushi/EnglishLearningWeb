@@ -27,6 +27,7 @@ public class UserAccount {
 	
 	@Column(nullable = false, unique = true)
 	private String username;
+	
 	private String displayname;
 	
 	private String email;
@@ -49,7 +50,7 @@ public class UserAccount {
 	
 	@OneToMany(mappedBy = "userSentAccount")
 	@JsonManagedReference
-	private Set<ChatRoomMessage> chatRoomMessages;
+	private Set<ChatRoomMessage> chatRoomMessages = new HashSet<ChatRoomMessage>();
 
 	public Long getId() {
 		return id;

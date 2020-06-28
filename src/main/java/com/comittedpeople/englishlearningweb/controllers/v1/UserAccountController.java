@@ -1,5 +1,6 @@
 package com.comittedpeople.englishlearningweb.controllers.v1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
@@ -34,6 +36,11 @@ public class UserAccountController {
 
 	@GetMapping
 	public ResponseEntity<List<UserAccountDTO>> getAllUserAccount() {
+		
+		//Đầu tiên phải kiểm tra user là admin thì mới cho phép lấy danh sách User về.
+		if (!isCurrentUserAdmin())
+			return new ResponseEntity<List<UserAccountDTO>>(new ArrayList<UserAccountDTO>(), HttpStatus.FORBIDDEN);
+		
 		List<UserAccountDTO> returnDTOs = userAccountService.getAllUsers();
 		
 		if (returnDTOs == null)
@@ -143,16 +150,13 @@ public class UserAccountController {
 		//Để có thể chỉnh được thông tin của User, thì có 2 TH được cho phép :
 		//1. Admin chỉnh thông tin của User.
 		//2. User tự chỉnh thông tin của mình.
+
+		//Debug.
 //		if (isCurrentUserAdmin())
 //			System.out.println("Current user is admin !");
-//		else {
-//			System.out.println("Current user IS NOT admin !");
-//		}
 //		if (matchCurrentUserID(currentUserID))
-//			System.out.println("Yes ! It's current user !");
-//		else {
-//			System.out.println("No ! It's not current user !");
-//		} 
+//			System.out.println("Match current User ID !");
+
 		return (isCurrentUserAdmin() || matchCurrentUserID(currentUserID));
 	}
 

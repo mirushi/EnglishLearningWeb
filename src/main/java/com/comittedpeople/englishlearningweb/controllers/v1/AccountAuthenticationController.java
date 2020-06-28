@@ -1,6 +1,8 @@
 package com.comittedpeople.englishlearningweb.controllers.v1;
 
 import javax.security.sasl.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,11 +57,12 @@ public class AccountAuthenticationController {
 
 		return new LoginResponseDTO(jwt);
 	}
-
+	
 	// Khi đăng ký, nếu thành công sẽ trả về luôn token nên trả về luôn
 	// LoginResponseDTO.
 	@PostMapping("/register")
-	public ResponseEntity<LoginResponseDTO> registerUser(@Valid @RequestBody RegisterRequestDTO registerRequest) {
+	public ResponseEntity<LoginResponseDTO> registerUser(@Valid @RequestBody RegisterRequestDTO registerRequest,
+			HttpServletRequest request, HttpServletResponse response) {
 
 		// Tiến hành đăng ký user mới.
 		UserAccount account = userAccountService.createUserAccount(registerRequest);
@@ -67,7 +71,18 @@ public class AccountAuthenticationController {
 		if (account == null)
 			return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(), HttpStatus.CONFLICT);
 
+		//Đăng ký thành công.
+		//Trả về token cho User.
+		Authentication authToken = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(registerRequest.getUsername(), registerRequest.getPassword()));
+		
+		
+		SecurityContextHolder.getContext().setAuthentication(authToken);
+		
+		String jwt= tokenProvider.generateToken((UserDetailsCustom) authToken.getPrincipal());
+		
+		return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(jwt), HttpStatus.OK);
+		
 		// Trả về đăng ký thành công.
-		return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(), HttpStatus.OK);
+		//return new ResponseEntity<LoginResponseDTO>(new LoginResponseDTO(), HttpStatus.OK);
 	}
 }
