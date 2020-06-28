@@ -14,9 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.comittedpeople.englishlearningweb.api.v1.mapper.ReminderConfigMapper;
 import com.comittedpeople.englishlearningweb.api.v1.mapper.UserAccountMapper;
+import com.comittedpeople.englishlearningweb.api.v1.model.ReminderConfigDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
 import com.comittedpeople.englishlearningweb.domain.AccountAuthority;
 import com.comittedpeople.englishlearningweb.domain.UserAccount;
 import com.comittedpeople.englishlearningweb.payload.RegisterRequestDTO;
@@ -37,6 +38,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 	
 	@Autowired
 	UserAccountMapper userMapper;
+	
+	@Autowired
+	ReminderConfigMapper reminderConfigMapper;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -105,19 +109,6 @@ public class UserAccountServiceImpl implements UserAccountService {
 		
 		return result;
 		
-	}
-	
-	@Override
-	public UserAccountDTO putUserReminder(Long userID, UserReminderDTO reminder) {
-		UserAccount account;
-		try {
-			account = userAccountRepository.findById(userID).get();
-		}catch (Exception e) {
-			return null;
-		}
-		
-		account.setReminder(reminder.getDays());
-		return userMapper.getDto(userAccountRepository.save(account));
 	}
 
 	@Override
@@ -229,5 +220,41 @@ public class UserAccountServiceImpl implements UserAccountService {
 				return true;
 		}
 		return false;
+	}
+
+	@Override
+	public ReminderConfigDTO getReminderConfigDTO(Long userID) {
+		// TODO Auto-generated method stub
+		UserAccount user = userAccountRepository.findById(userID).get();
+		
+		if (user == null)
+			return null;
+		
+		ReminderConfigDTO dto = reminderConfigMapper.getDto(user);
+		
+		return dto;
+	}
+
+	@Override
+	public ReminderConfigDTO putReminderConfigDTO(Long userID, ReminderConfigDTO reminderConfigDTO) {
+		// TODO Auto-generated method stub
+		
+		UserAccount currentUser = userAccountRepository.findById(userID).get();
+		
+		if (currentUser == null)
+			return null;
+		
+		//Gán các ngày vào lại user.
+		currentUser.setReminderMonday(reminderConfigDTO.getMonday());
+		currentUser.setReminderTuesday(reminderConfigDTO.getTuesday());
+		currentUser.setReminderWednesday(reminderConfigDTO.getWednesday());
+		currentUser.setReminderThursday(reminderConfigDTO.getThursday());
+		currentUser.setReminderFriday(reminderConfigDTO.getFriday());
+		currentUser.setReminderSaturday(reminderConfigDTO.getSaturday());
+		currentUser.setReminderSunday(reminderConfigDTO.getSunday());
+		
+		currentUser = userAccountRepository.save(currentUser);
+		
+		return reminderConfigMapper.getDto(currentUser);
 	}
 }

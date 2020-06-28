@@ -2,8 +2,8 @@ package com.comittedpeople.englishlearningweb.services;
 
 import java.util.List;
 
+import com.comittedpeople.englishlearningweb.api.v1.model.ReminderConfigDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
 import com.comittedpeople.englishlearningweb.domain.UserAccount;
 import com.comittedpeople.englishlearningweb.payload.RegisterRequestDTO;
 
@@ -16,8 +16,10 @@ public interface UserAccountService {
 	UserAccountDTO getUserByID (Long userID);
 	
 	UserAccountDTO patchUserByID (Long userID, UserAccountDTO userAccount);
+		
+	ReminderConfigDTO getReminderConfigDTO (Long userID);
 	
-	UserAccountDTO putUserReminder (Long userID, UserReminderDTO reminder);
+	ReminderConfigDTO putReminderConfigDTO (Long userID, ReminderConfigDTO reminderConfigDTO);
 	
 	Boolean setBanUserID (Long userID, Boolean setStatus);
 		

@@ -37,6 +37,20 @@ public class UserAccount {
 	private Boolean enabled;
 	
 	private Integer reminder;
+	
+	private Byte reminderMonday;
+	
+	private Byte reminderTuesday;
+	
+	private Byte reminderWednesday;
+	
+	private Byte reminderThursday;
+	
+	private Byte reminderFriday;
+	
+	private Byte reminderSaturday;
+	
+	private Byte reminderSunday;
 
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,
@@ -123,5 +137,60 @@ public class UserAccount {
 	public void setReminder(Integer reminder) {
 		this.reminder = reminder;
 	}
-	
+
+	public Byte getReminderMonday() {
+		return reminderMonday;
+	}
+
+	public void setReminderMonday(Byte reminderMonday) {
+		this.reminderMonday = reminderMonday;
+	}
+
+	public Byte getReminderTuesday() {
+		return reminderTuesday;
+	}
+
+	public void setReminderTuesday(Byte reminderTuesday) {
+		this.reminderTuesday = reminderTuesday;
+	}
+
+	public Byte getReminderWednesday() {
+		return reminderWednesday;
+	}
+
+	public void setReminderWednesday(Byte reminderWednesday) {
+		this.reminderWednesday = reminderWednesday;
+	}
+
+	public Byte getReminderThursday() {
+		return reminderThursday;
+	}
+
+	public void setReminderThursday(Byte reminderThursday) {
+		this.reminderThursday = reminderThursday;
+	}
+
+	public Byte getReminderFriday() {
+		return reminderFriday;
+	}
+
+	public void setReminderFriday(Byte reminderFriday) {
+		this.reminderFriday = reminderFriday;
+	}
+
+	public Byte getReminderSaturday() {
+		return reminderSaturday;
+	}
+
+	public void setReminderSaturday(Byte reminderSaturday) {
+		this.reminderSaturday = reminderSaturday;
+	}
+
+	public Byte getReminderSunday() {
+		return reminderSunday;
+	}
+
+	public void setReminderSunday(Byte reminderSunday) {
+		this.reminderSunday = reminderSunday;
+	}
 }

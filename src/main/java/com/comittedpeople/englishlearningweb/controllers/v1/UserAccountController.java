@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.comittedpeople.englishlearningweb.api.v1.model.ReminderConfigDTO;
 import com.comittedpeople.englishlearningweb.api.v1.model.UserAccountDTO;
-import com.comittedpeople.englishlearningweb.api.v1.model.UserReminderDTO;
 import com.comittedpeople.englishlearningweb.domain.UserDetailsCustom;
 import com.comittedpeople.englishlearningweb.services.UserAccountService;
 
@@ -70,17 +70,18 @@ public class UserAccountController {
 	}
 
 	@GetMapping("{userID}/reminders")
-	public ResponseEntity<UserReminderDTO> getUserReminders(@PathVariable Long userID) {
+	public ResponseEntity<ReminderConfigDTO> getUserReminders(@PathVariable Long userID) {
 		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
 		if (!isCurrentUserHaveEditPermission(userID)) {
-			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
+			return new ResponseEntity<ReminderConfigDTO>(new ReminderConfigDTO(), HttpStatus.FORBIDDEN);
 		}
 
-		UserAccountDTO userDTO = userAccountService.getUserByID(userID);
-		if (userDTO == null)
-			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.NOT_FOUND);
+		ReminderConfigDTO reminderConfigDTO = userAccountService.getReminderConfigDTO(userID);
+		
+		if (reminderConfigDTO == null)
+			return new ResponseEntity<ReminderConfigDTO>(new ReminderConfigDTO(), HttpStatus.NOT_FOUND);
 		else
-			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(userDTO.getReminder()), HttpStatus.OK);
+			return new ResponseEntity<ReminderConfigDTO>(reminderConfigDTO, HttpStatus.OK);
 	}
 
 	@GetMapping("{userID}/ban")
@@ -99,20 +100,19 @@ public class UserAccountController {
 	}
 	
 	@PutMapping("{userID}/reminders")
-	public ResponseEntity<UserReminderDTO> putUserReminders(@PathVariable Long userID,
-			@Valid @RequestBody UserReminderDTO reminderDays) {
+	public ResponseEntity<ReminderConfigDTO> putUserReminders(@PathVariable Long userID,
+			@Valid @RequestBody ReminderConfigDTO reminderConfigDTO) {
 		// Nếu thông tin reminder mà user yêu cầu là của người khác, không cho xem.
 		if (!isCurrentUserHaveEditPermission(userID)) {
-			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.FORBIDDEN);
+			return new ResponseEntity<ReminderConfigDTO>(new ReminderConfigDTO(), HttpStatus.FORBIDDEN);
 		}
 		
-		System.out.println("Reminder days : " + reminderDays.toString());
-
-		UserAccountDTO userDTO = userAccountService.putUserReminder(userID, reminderDays);
-		if (userDTO == null)
-			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(), HttpStatus.NOT_FOUND);
+		ReminderConfigDTO result = userAccountService.putReminderConfigDTO(userID, reminderConfigDTO);
+		
+		if (result == null)
+			return new ResponseEntity<ReminderConfigDTO>(new ReminderConfigDTO(), HttpStatus.NOT_FOUND);
 		else
-			return new ResponseEntity<UserReminderDTO>(new UserReminderDTO(userDTO.getReminder()), HttpStatus.OK);
+			return new ResponseEntity<ReminderConfigDTO>(result, HttpStatus.OK);
 	}
 
 	@PatchMapping("{userID}")
