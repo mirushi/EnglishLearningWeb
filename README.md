@@ -183,7 +183,13 @@ Lưu Biêu Nghị
 <br>
 <img src="images/lienlac.png" alt="Logo" width="400" height="25">
 
-Project Link: [https://github.com/mirushi/EnglishLearningWeb](https://github.com/mirushi/EnglishLearningWeb)
+Project Link: 
+
+Front-End: 
+[https://github.com/dongnvsince1999/Baotri_UI](https://github.com/dongnvsince1999/Baotri_UI)
+
+Back-End: 
+[https://github.com/mirushi/EnglishLearningWeb](https://github.com/mirushi/EnglishLearningWeb)
 
 
 
