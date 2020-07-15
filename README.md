@@ -78,9 +78,6 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/mirushi/EnglishLearningWeb)
 
-Trước tình hình thực tế hiện nay là doanh nghiệp yêu cầu ngày càng nhiều kỹ năng từ phía người lao động, nhất là những kỹ năng liên quan đến ngôn ngữ. Tiếng Anh luôn là một trong những ngôn ngữ hàng đầu mà hầu hết các nhà tuyển dụng yêu cầu từ phía người lao động. 
-Tuy nhiên, hiện trạng hiện nay là trình độ tiếng Anh mặt bằng chung của người lao động Việt Nam vẫn còn nhiều giới hạn. Và hơn bao giờ hết nhu cầu học Anh Văn, nhất là của người đi làm, lại cao như hiện tại.
-
 Để đáp ứng yêu cầu học Anh Văn của người đi làm, chúng tôi thiết kế và xây dựng hệ thống trang Web cho phép người dùng tự học tiếng Anh ở bất cứ nơi đâu, bất kì khi nào. Hơn hết, chúng tôi nhắm vào đối tượng khách hàng chính là người đi làm, với những tính năng ưu việt từ Website đã được tối ưu hoá để mang lại trải nghiệm người dùng tối đa như :
 
 *	Cho phép tra cứu nhanh chóng, thuận tiện bất kỳ mẫu ngữ pháp, từ vựng tiếng Anh nào.
@@ -164,29 +161,29 @@ Ngoài ra, bạn có thể đóng góp cho team những góp ý, tính năng m�
 <!-- CONTRIBUTING -->
 ## Phát triển dự án
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Team rất hoan nghênh những đóng góp và góp ý của bạn.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Để đóng góp đến project, bạn có thể thực hiện theo các bước sau : 
 
-
+1. Fork Project
+2. Tạo một nhánh Feature của bạn (`git checkout -b feature/AmazingFeature`)
+3. Commit các thay đổi của bạn (`git commit -m 'Add some AmazingFeature'`)
+4. Đẩy nhánh của bạn lên (`git push origin feature/AmazingFeature`)
+5. Tạo một pull request
 
 <!-- LICENSE -->
 ## Giấy phép
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
+Source code được release theo giấy phép GPLv3. 
 
 <!-- CONTACT -->
 ## Liên hệ
 
-Lưu Biêu Nghị - ![]()
+Lưu Biêu Nghị
+<br>
+<img src="images/lienlac.png" alt="Logo" width="400" height="25">
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/mirushi/EnglishLearningWeb](https://github.com/mirushi/EnglishLearningWeb)
 
 
 
