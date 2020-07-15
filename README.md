@@ -76,7 +76,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Giới thiệu về dự án
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/mirushi/EnglishLearningWeb)
 
 Trước tình hình thực tế hiện nay là doanh nghiệp yêu cầu ngày càng nhiều kỹ năng từ phía người lao động, nhất là những kỹ năng liên quan đến ngôn ngữ. Tiếng Anh luôn là một trong những ngôn ngữ hàng đầu mà hầu hết các nhà tuyển dụng yêu cầu từ phía người lao động. 
 Tuy nhiên, hiện trạng hiện nay là trình độ tiếng Anh mặt bằng chung của người lao động Việt Nam vẫn còn nhiều giới hạn. Và hơn bao giờ hết nhu cầu học Anh Văn, nhất là của người đi làm, lại cao như hiện tại.
@@ -211,4 +211,4 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [license-url]: https://github.com/mirushi/EnglishLearningWeb/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com
-[product-screenshot]: images/screenshot-homepage.png
+[product-screenshot]: https://github.com/mirushi/EnglishLearningWeb/tree/master/images/screenshot-homepage.png
