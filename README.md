@@ -29,48 +29,48 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/mirushi/EnglishLearningWeb">
     <img src="images/logo.png" alt="Logo" width="550" height="180">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">English Learning Website for Busy People</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    Hệ thống học tiếng Anh tiện lợi nhất cho người đi làm
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/mirushi/EnglishLearningWeb"><strong>Tải source code ngay »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/mirushi/EnglishLearningWeb">Xem Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/mirushi/EnglishLearningWeb/issues">Báo lỗi</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/mirushi/EnglishLearningWeb/issues">Yêu cầu tính năng</a>
   </p>
 </p>
 
 
 
 <!-- TABLE OF CONTENTS -->
-## Table of Contents
+## Mục lục
 
-- [Table of Contents](#table-of-contents)
-- [About The Project](#about-the-project)
-  - [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+- [Mục lục](#mục-lục)
+- [Giới thiệu về dự án](#giới-thiệu-về-dự-án)
+  - [Công nghệ sử dụng](#công-nghệ-sử-dụng)
+- [Hướng dẫn cài đặt và sử dụng](#hướng-dẫn-cài-đặt-và-sử-dụng)
+  - [Yêu cầu](#yêu-cầu)
+  - [Cài đặt](#cài-đặt)
+- [Sử dụng hệ thống](#sử-dụng-hệ-thống)
+- [Hướng phát triển tương lai](#hướng-phát-triển-tương-lai)
+- [Phát triển dự án](#phát-triển-dự-án)
+- [Giấy phép](#giấy-phép)
+- [Liên hệ](#liên-hệ)
+- [Các thành phần đã sử dụng](#các-thành-phần-đã-sử-dụng)
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Giới thiệu về dự án
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
@@ -85,7 +85,7 @@ Of course, no one template will serve all projects since your needs may be diffe
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
-### Built With
+### Công nghệ sử dụng
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Bootstrap](https://getbootstrap.com)
 * [JQuery](https://jquery.com)
@@ -94,12 +94,12 @@ This section should list any major frameworks that you built your project using.
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Hướng dẫn cài đặt và sử dụng
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### Yêu cầu
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
@@ -107,7 +107,7 @@ This is an example of how to list things you need to use the software and how to
 npm install npm@latest -g
 ```
 
-### Installation
+### Cài đặt
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -126,7 +126,7 @@ const API_KEY = 'ENTER YOUR API';
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Sử dụng hệ thống
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
@@ -135,14 +135,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Hướng phát triển tương lai
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
 
 
 <!-- CONTRIBUTING -->
-## Contributing
+## Phát triển dự án
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -155,14 +155,14 @@ Contributions are what make the open source community such an amazing place to b
 
 
 <!-- LICENSE -->
-## License
+## Giấy phép
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
 
 <!-- CONTACT -->
-## Contact
+## Liên hệ
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
@@ -171,7 +171,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 
 <!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+## Các thành phần đã sử dụng
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Img Shields](https://shields.io)
 * [Choose an Open Source License](https://choosealicense.com)
