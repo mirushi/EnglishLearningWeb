@@ -36,11 +36,13 @@
   <h3 align="center">English Learning Website for Busy People</h3>
 
   <p align="center">
-    Hệ thống học tiếng Anh tiện lợi nhất cho người đi làm
+    Hệ thống học tiếng Anh tiện lợi nhất cho người đi làm (Backend)
     <br />
     <a href="https://github.com/mirushi/EnglishLearningWeb/archive/master.zip"><strong>Tải source code ngay »</strong></a>
     <br>
     <a href="https://github.com/mirushi/EnglishLearningWeb/blob/master/documents/Nhom04_CuoiKy.pdf"><strong>Xem báo cáo »</strong></a>
+    <br>
+    <a href="https://github.com/dongnvsince1999/Baotri_UI"><strong>Source code FrontEnd »</strong></a>
     <br />
     <br />
     <a href="https://github.com/mirushi/EnglishLearningWeb">Xem Demo</a>
@@ -76,16 +78,21 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need.
+Trước tình hình thực tế hiện nay là doanh nghiệp yêu cầu ngày càng nhiều kỹ năng từ phía người lao động, nhất là những kỹ năng liên quan đến ngôn ngữ. Tiếng Anh luôn là một trong những ngôn ngữ hàng đầu mà hầu hết các nhà tuyển dụng yêu cầu từ phía người lao động. 
+Tuy nhiên, hiện trạng hiện nay là trình độ tiếng Anh mặt bằng chung của người lao động Việt Nam vẫn còn nhiều giới hạn. Và hơn bao giờ hết nhu cầu học Anh Văn, nhất là của người đi làm, lại cao như hiện tại.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
+Để đáp ứng yêu cầu học Anh Văn của người đi làm, chúng tôi thiết kế và xây dựng hệ thống trang Web cho phép người dùng tự học tiếng Anh ở bất cứ nơi đâu, bất kì khi nào. Hơn hết, chúng tôi nhắm vào đối tượng khách hàng chính là người đi làm, với những tính năng ưu việt từ Website đã được tối ưu hoá để mang lại trải nghiệm người dùng tối đa như :
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue.
+*	Cho phép tra cứu nhanh chóng, thuận tiện bất kỳ mẫu ngữ pháp, từ vựng tiếng Anh nào.
+*	Cho phép người dùng học theo từng bài, học theo chương, theo chủ đề.
+*	Cho phép người dùng tạo tài khoản và quản lý thông tin tài khoản, thực hiện chức năng tự động nhắc nhở người dùng học tiếng Anh,…
+*	Đặc biệt, cho phép người dùng chat với tất cả người dùng trên Website khác thông qua chat room.
 
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+Ngoài ra, ở khía cạnh người quản lý cho nội dung của Website (admin), chúng tôi còn cung cấp các tiện ích như :
+
+*	Cho phép admin quản lý nội dung bài học ngay trên trang web (bao gồm Grammar, Vocabulary).
+*	Cho phép admin quản lý tài khoản của các user khác (xem thông tin, chỉnh sửa thông tin).
+*	Đặc biệt, cho phép admin quản lý các đoạn chat trong chat room một cách dễ dàng và hiệu quả.
 
 ### Công nghệ sử dụng
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
@@ -204,4 +211,4 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [license-url]: https://github.com/mirushi/EnglishLearningWeb/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/screenshot-homepage.png
