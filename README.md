@@ -95,59 +95,70 @@ Ngoài ra, ở khía cạnh người quản lý cho nội dung của Website (ad
 *	Đặc biệt, cho phép admin quản lý các đoạn chat trong chat room một cách dễ dàng và hiệu quả.
 
 ### Công nghệ sử dụng
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
-* [Laravel](https://laravel.com)
-
+Để sản phẩm có thể chạy tốt và hiệu quả trên nhiều nền tảng khác nhau, nhóm đã nghiên cứu và phát triển BackEnd dựa trên các công nghệ hỗ trợ cross-platform tối đa.
+* [Spring](https://spring.io/)
+* [Hibernate ORM](https://hibernate.org/orm/)
 
 
 <!-- GETTING STARTED -->
 ## Hướng dẫn cài đặt và sử dụng
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Để có thể chạy được server ở phía BackEnd, các bạn có thể thực hiện theo các bước hướng dẫn như sau. 
 
 ### Yêu cầu
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+Phần hướng dẫn sau sử dụng Spring Tools Suite 4 (Eclipse) và được thực hiện trên hệ điều hành Windows. Các hệ điều hành khác có thể thực hiện tương tự.
+* [Spring Tools Suite 4](https://spring.io/tools)
+* [JDK 8](https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=hotspot)
 
 ### Cài đặt
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Tải và cài đặt Spring Tools Suite (cài đặt mặc định là đủ dùng).
+2. Clone repository
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/mirushi/EnglishLearningWeb.git
 ```
-3. Install NPM packages
-```sh
-npm install
-```
-4. Enter your API in `config.js`
-```JS
-const API_KEY = 'ENTER YOUR API';
-```
-
-
+3. Chạy Spring Tools Suite và chọn File -> Import
+4. Maven -> Existing Maven Projects
+5. Ở mục Root Directory, chọn đến thư mục project chứa file pom.xml vừa clone về
+6. Phải chuột vào project vừa import, chọn "Run As -> Spring Boot App".
 
 <!-- USAGE EXAMPLES -->
 ## Sử dụng hệ thống
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+(Record Videos ?)
 
 <!-- ROADMAP -->
 ## Hướng phát triển tương lai
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
+Các tính năng chính mà nhóm dự định trong những môn học tới sẽ tiếp tục phát triển như sau :
 
+* Flashcard vocabulary.
+
+
+* Chức năng học chuyên sâu Grammar :
+  * Làm bài tập.
+    * Trắc nghiệm (được chia ra theo loại ngữ pháp).
+    * Điền khuyết.
+    * Chấm điểm và đưa ra đáp án đúng.
+  * Đánh giá học viên.
+    * Mức độ thông thạo.
+    * Điểm yếu trong ngữ pháp.
+    * Gợi ý luyện tập những phần còn yếu.
+
+* Chức năng học chuyên sâu Listening :
+  * Trang người dùng :
+    * Làm dạng phim được cắt đoạn. 
+    * Người dùng được phép nhập câu trả lời của mình vào.
+    * Hệ thống sẽ tính điểm dựa trên câu trả lời của người dùng.
+    * Tham khảo (supernative.tv).
+  * Trang người quản trị :
+    * Thêm/xoá/sửa video.
+  * Một video bao gồm :
+    * Đoạn subtitle.
+    * Điểm.
+
+
+Ngoài ra, bạn có thể đóng góp cho team những góp ý, tính năng mới thông qua mục [open issues](https://github.com/mirushi/EnglishLearningWeb/issues).
 
 
 <!-- CONTRIBUTING -->
@@ -173,7 +184,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Liên hệ
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Lưu Biêu Nghị - ![]()
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
@@ -211,4 +222,4 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 [license-url]: https://github.com/mirushi/EnglishLearningWeb/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com
-[product-screenshot]: https://github.com/mirushi/EnglishLearningWeb/tree/master/images/screenshot-homepage.png
+[product-screenshot]: https://github.com/mirushi/EnglishLearningWeb/raw/master/images/screenshot-homepage.png
