@@ -84,7 +84,7 @@ public class UserAccountController {
 			return new ResponseEntity<ReminderConfigDTO>(reminderConfigDTO, HttpStatus.OK);
 	}
 
-	@GetMapping("{userID}/ban")
+	@PutMapping("{userID}/ban")
 	public ResponseEntity setUserBanStatus(@PathVariable Long userID, @RequestParam("status")Integer status) {
 		Boolean isBanned = false;
 		if (status == 1)
