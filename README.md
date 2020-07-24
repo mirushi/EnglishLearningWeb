@@ -122,7 +122,9 @@ git clone https://github.com/mirushi/EnglishLearningWeb.git
 <!-- USAGE EXAMPLES -->
 ## Sử dụng hệ thống
 
-(Record Videos ?)
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pCEULyhYsaM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XSKbAwUfLhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <!-- ROADMAP -->
 ## Hướng phát triển tương lai
