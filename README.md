@@ -122,9 +122,9 @@ git clone https://github.com/mirushi/EnglishLearningWeb.git
 <!-- USAGE EXAMPLES -->
 ## Sử dụng hệ thống
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/pCEULyhYsaM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Video - Cài đặt hệ thống FIT English](http://img.youtube.com/vi/pCEULyhYsaM/0.jpg)](http://www.youtube.com/watch?v=pCEULyhYsaM "Part 1 - Cài đặt hệ thống FIT English")
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/XSKbAwUfLhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Video - Sử dụng hệ thống FIT English](http://img.youtube.com/vi/XSKbAwUfLhE/0.jpg)](http://www.youtube.com/watch?v=XSKbAwUfLhE "Part 2 - Sử dụng hệ thống FIT English")
 
 <!-- ROADMAP -->
 ## Hướng phát triển tương lai
