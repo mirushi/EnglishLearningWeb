@@ -65,6 +65,8 @@
   - [Yêu cầu](#yêu-cầu)
   - [Cài đặt](#cài-đặt)
 - [Sử dụng hệ thống](#sử-dụng-hệ-thống)
+  - [Video Cài đặt hệ thống FIT English (click vào ảnh)](#video-cài-đặt-hệ-thống-fit-english-click-vào-ảnh)
+  - [Video Sử dụng hệ thống FIT English (click vào ảnh)](#video-sử-dụng-hệ-thống-fit-english-click-vào-ảnh)
 - [Hướng phát triển tương lai](#hướng-phát-triển-tương-lai)
 - [Phát triển dự án](#phát-triển-dự-án)
 - [Giấy phép](#giấy-phép)
@@ -122,8 +124,12 @@ git clone https://github.com/mirushi/EnglishLearningWeb.git
 <!-- USAGE EXAMPLES -->
 ## Sử dụng hệ thống
 
+### Video Cài đặt hệ thống FIT English (click vào ảnh)
+
 [![Video - Cài đặt hệ thống FIT English](http://img.youtube.com/vi/pCEULyhYsaM/0.jpg)](http://www.youtube.com/watch?v=pCEULyhYsaM "Part 1 - Cài đặt hệ thống FIT English")
 
+
+### Video Sử dụng hệ thống FIT English (click vào ảnh)
 [![Video - Sử dụng hệ thống FIT English](http://img.youtube.com/vi/XSKbAwUfLhE/0.jpg)](http://www.youtube.com/watch?v=XSKbAwUfLhE "Part 2 - Sử dụng hệ thống FIT English")
 
 <!-- ROADMAP -->
